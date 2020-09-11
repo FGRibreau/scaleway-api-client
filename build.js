@@ -77,6 +77,11 @@ const api = new Client("YOUR_AUTH_TOKEN_HERE");
 ## [Documentation](https://scaleway-api-client.netlify.app/1.0.1/)
 ## [Examples](./examples)
 
+## Previous work
+
+- https://github.com/moul/node-scaleway
+- https://github.com/ignitial/scaleway-promised
+
 ## You want to support my work?
 
 I maintain this project in my free time, if it helped you, well, I would be grateful to buy a beer thanks to your [paypal](https://paypal.me/fgribreau) or [Bitcoins](https://www.coinbase.com/fgribreau), donation!
