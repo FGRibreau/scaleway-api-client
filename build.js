@@ -86,7 +86,7 @@ const Client = require('${pack.name}');
 const api = new Client("YOUR_AUTH_TOKEN_HERE");
 \`\`\`
 
-## 📘 [Documentation](https://${pack.name}.netlify.app/1.0.1/)
+## 📘 [Documentation](https://${pack.name}.netlify.app/${pack.version}/)
 ## 🚀 [Examples](./examples)
 
 ## Previous work

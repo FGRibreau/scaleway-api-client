@@ -36,7 +36,7 @@ const Client = require('scaleway-api-client');
 const api = new Client("YOUR_AUTH_TOKEN_HERE");
 ```
 
-## 📘 [Documentation](https://scaleway-api-client.netlify.app/1.0.1/)
+## 📘 [Documentation](https://scaleway-api-client.netlify.app/1.1.0/)
 ## 🚀 [Examples](./examples)
 
 ## Previous work
