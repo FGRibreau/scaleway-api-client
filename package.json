@@ -1,13 +1,16 @@
 {
   "name": "scaleway-api-client",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "NodeJS API Client for Scaleway",
   "main": "lib.js",
   "scripts": {
     "build": "node build.js",
     "doc": "jsdoc -c ./jsdoc.json"
   },
-  "files": ["README.md", "lib.js"],
+  "files": [
+    "README.md",
+    "lib.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/FGRibreau/scaleway-api-client.git"
