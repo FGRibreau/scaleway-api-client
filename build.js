@@ -3,16 +3,26 @@ const YAML = require('yaml');
 const assert = require('assert');
 const fs = require('fs');
 const pack = require('./package.json');
+const path = require('path');
 
-const openapi_url = 'https://developers.scaleway.com/static/c336c02927a3f02afc1b604751f91330/scaleway.baremetal.v1.Api.yml';
+const openapi_urls = [
+  'https://developers.scaleway.com/static/1e8330f12e52076eb632454487144a0c/scaleway.instance.v1.Api.yml',
+  'https://developers.scaleway.com/static/c336c02927a3f02afc1b604751f91330/scaleway.baremetal.v1.Api.yml',
+  'https://developers.scaleway.com/static/8a462da68554426057bfe403ba3ac65f/scaleway.lb.v1.Api.yml',
+  'https://developers.scaleway.com/static/c2ed334cada6e826be4cfb5e3e2c06a5/scaleway.registry.v1.Api.yml',
+  'https://developers.scaleway.com/static/957d68ee68346376b47e130cb1b239f7/scaleway.rdb.v1.Api.yml',
+  'https://developers.scaleway.com/static/db3728b5af7492cbf74f956465ce236e/scaleway.k8s.v1.Api.yml',
+  'https://developers.scaleway.com/static/e21bed9bc399e3c7fcd3ad8cf7da5e8d/scaleway.iot.v1beta1.Api.yml'];
 
-axios.get(openapi_url)
-  .then(res =>
-    YAML.parse(res.data),
-  )
+Promise.all(openapi_urls.map(openapi_url => axios.get(openapi_url).then(res => YAML.parse(res.data))))
+  .then(extract_paths)
+  //.then((v) => (console.log(v), v))
   .then(generate)
   .then(write_files);
 
+function extract_paths(schemas){
+  return schemas.reduce((m, schema) => ({...m, ...schema.paths}), {});
+}
 
 /**
  * Write the files file_name => content pair to disk
@@ -31,7 +41,7 @@ function write_files(files) {
  * #YOLO (still better than 3 years-old NodeJS alternative IMHO)
  * @param openapi
  */
-function generate(openapi) {
+function generate(paths) {
   let lib = `const axios = require('axios');
 
 
@@ -51,20 +61,22 @@ function Client(auth_token){
 
 ------------------------------------------------
 
-[![Deps](\thttps://img.shields.io/david/FGRibreau/scaleway-api-client.svg)](https://david-dm.org/FGRibreau/scaleway-api-client) [![NPM version](https://img.shields.io/npm/v/scaleway-api-client.svg)](http://badge.fury.io/js/scaleway-api-client) [![Downloads](http://img.shields.io/npm/dm/scaleway-api-client.svg)](https://www.npmjs.com/package/scaleway-api-client)
+[![Deps](https://img.shields.io/david/FGRibreau/${pack.name}${pack.name}.svg)](https://david-dm.org/FGRibreau/${pack.name}${pack.name}) [![NPM version](https://img.shields.io/npm/v/${pack.name}${pack.name}.svg)](http://badge.fury.io/js/${pack.name}${pack.name}) [![Downloads](http://img.shields.io/npm/dm/${pack.name}${pack.name}.svg)](https://www.npmjs.com/package/${pack.name})
 
 [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/francois-guillaume-ribreau?utm_source=github&utm_medium=button&utm_term=francois-guillaume-ribreau&utm_campaign=github)  [![available-for-advisory](https://img.shields.io/badge/available%20for%20consulting%20advisory-yes-ff69b4.svg?)](http://bit.ly/2c7uFJq) ![extra](https://img.shields.io/badge/actively%20maintained-yes-ff69b4.svg) [![Slack](https://img.shields.io/badge/Slack-Join%20our%20tech%20community-17202A?logo=slack)](https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg)
 
-Fully auto-generated from [Scaleway OpenAPI Schema](${openapi_url})
+Fully auto-generated from Scaleway OpenAPI definition files:
 
-## Installation
+${openapi_urls.map(openapi_url => `- [${path.basename(openapi_url)}](${openapi_url})`).join('\n')}
 
-Install with [npm](https://npmjs.org/package/scaleway-api-client).
+## ⚡️ Installation
 
-    npm install --save scaleway-api-client
+Install with [npm](https://npmjs.org/package/${pack.name}).
+
+    npm install --save ${pack.name}
  
 
-## Authentication
+## 👾 Authentication
 
 Create an API token on [Scaleway admin console here](https://console.scaleway.com/account/organization/credentials).
 
@@ -74,8 +86,8 @@ const Client = require('${pack.name}');
 const api = new Client("YOUR_AUTH_TOKEN_HERE");
 \`\`\`
 
-## [Documentation](https://scaleway-api-client.netlify.app/1.0.1/)
-## [Examples](./examples)
+## 📘 [Documentation](https://${pack.name}.netlify.app/1.0.1/)
+## 🚀 [Examples](./examples)
 
 ## Previous work
 
@@ -134,14 +146,14 @@ I maintain this project in my free time, if it helped you, well, I would be grat
     },
   }, null, 2);
 
-  Object.keys(openapi.paths).forEach(path => {
-    Object.keys(openapi.paths[path]).forEach(method => {
+  Object.keys(paths).forEach(path => {
+    Object.keys(paths[path]).forEach(method => {
 
-      const required_parameters = openapi.paths[path][method].parameters.filter(p => p.required);
+      const required_parameters = (paths[path][method].parameters || []).filter(p => p.required);
 
       // when POST/PUT, add required request body properties as well
-      if (['post', 'put'].includes(method) && openapi.paths[path][method].requestBody.required) {
-        const schema = openapi.paths[path][method].requestBody.content['application/json'].schema;
+      if (['post', 'put'].includes(method) && paths[path][method].requestBody && paths[path][method].requestBody.required) {
+        const schema = paths[path][method].requestBody.content['application/json'].schema;
         assert(schema.type === 'object');
         required_parameters.push({
             in: 'body',
@@ -157,12 +169,12 @@ I maintain this project in my free time, if it helped you, well, I would be grat
       lib += `
 
 /**
- * ${openapi.paths[path][method].summary}
- * @description ${openapi.paths[path][method].description}
+ * ${paths[path][method].summary}
+ * @description ${paths[path][method].description}
 ${required_parameters.map(to_jsdoc_parameter).join('\n')}
  * @param {object?} options axios http request options
  */
-Client.prototype.${openapi.paths[path][method].operationId} = function ${openapi.paths[path][method].operationId}(${required_parameters.map(p => p.name).join(', ')}, options){
+Client.prototype.${paths[path][method].operationId} = function ${paths[path][method].operationId}(${required_parameters.map(p => p.name).join(', ')}, options){
   return axios({
     method: ${JSON.stringify(method)},
     url: ${JSON.stringify(path)}${required_parameters.filter(p => p.in === 'path').map(p => `.replace('{${p.name}}', ${p.name})`).join('')},
