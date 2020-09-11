@@ -65,17 +65,12 @@ function Client(auth_token){
 
 [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/francois-guillaume-ribreau?utm_source=github&utm_medium=button&utm_term=francois-guillaume-ribreau&utm_campaign=github)  [![available-for-advisory](https://img.shields.io/badge/available%20for%20consulting%20advisory-yes-ff69b4.svg?)](http://bit.ly/2c7uFJq) ![extra](https://img.shields.io/badge/actively%20maintained-yes-ff69b4.svg) [![Slack](https://img.shields.io/badge/Slack-Join%20our%20tech%20community-17202A?logo=slack)](https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg)
 
-Fully auto-generated from Scaleway OpenAPI definition files:
-
-${openapi_urls.map(openapi_url => `- [${path.basename(openapi_url)}](${openapi_url})`).join('\n')}
-
 ## ⚡️ Installation
 
 Install with [npm](https://npmjs.org/package/${pack.name}).
 
-    npm install --save ${pack.name}
+    npm install --save ${pack.name}@${pack.version}
  
-
 ## 👾 Authentication
 
 Create an API token on [Scaleway admin console here](https://console.scaleway.com/account/organization/credentials).
@@ -87,14 +82,31 @@ const api = new Client("YOUR_AUTH_TOKEN_HERE");
 \`\`\`
 
 ## 📘 [Documentation](https://${pack.name}.netlify.app/${pack.version}/)
+
+${
+    Object.keys(paths).reduce((m, path) => {
+        Object.keys(paths[path]).forEach(method => {
+          m.push(`- [${paths[path][method].operationId}](https://${pack.name}.netlify.app/${pack.version}/Client.html#${paths[path][method].operationId})`);
+        })
+      return m;
+        
+    }, []).sort().join('\n')
+}
+
 ## 🚀 [Examples](./examples)
 
-## Previous work
+## 😋 How it works
+
+[lib.js](./lib.js) is fully generated from Scaleway OpenAPI definition files:
+
+${openapi_urls.map(openapi_url => `- [${path.basename(openapi_url)}](${openapi_url})`).join('\n')}
+
+## 😉 Previous work
 
 - https://github.com/moul/node-scaleway
 - https://github.com/ignitial/scaleway-promised
 
-## You want to support my work?
+## 🤩 You want to support my work?
 
 I maintain this project in my free time, if it helped you, well, I would be grateful to buy a beer thanks to your [paypal](https://paypal.me/fgribreau) or [Bitcoins](https://www.coinbase.com/fgribreau), donation!
 

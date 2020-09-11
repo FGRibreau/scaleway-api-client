@@ -75,9 +75,253 @@
   <br><p><strong>scaleway-api-client</strong> - NodeJS API Client for Scaleway</p>
 </div>
 <hr>
-<p><a href="https://david-dm.org/FGRibreau/scaleway-api-clientscaleway-api-client"><img src="https://img.shields.io/david/FGRibreau/scaleway-api-clientscaleway-api-client.svg" alt="Deps"></a> <a href="http://badge.fury.io/js/scaleway-api-clientscaleway-api-client"><img src="https://img.shields.io/npm/v/scaleway-api-clientscaleway-api-client.svg" alt="NPM version"></a> <a href="https://www.npmjs.com/package/scaleway-api-client"><img src="http://img.shields.io/npm/dm/scaleway-api-clientscaleway-api-client.svg" alt="Downloads"></a></p>
+<p><a href="https://david-dm.org/FGRibreau/scaleway-api-client"><img src="https://img.shields.io/david/FGRibreau/scaleway-api-client.svg" alt="Deps"></a> <a href="http://badge.fury.io/js/scaleway-api-client"><img src="https://img.shields.io/npm/v/scaleway-api-client.svg" alt="NPM version"></a> <a href="https://www.npmjs.com/package/scaleway-api-client"><img src="http://img.shields.io/npm/dm/scaleway-api-client.svg" alt="Downloads"></a></p>
 <p><a href="https://www.codementor.io/francois-guillaume-ribreau?utm_source=github&amp;utm_medium=button&amp;utm_term=francois-guillaume-ribreau&amp;utm_campaign=github"><img src="https://cdn.codementor.io/badges/get_help_github.svg" alt="Get help on Codementor"></a>  <a href="http://bit.ly/2c7uFJq"><img src="https://img.shields.io/badge/available%20for%20consulting%20advisory-yes-ff69b4.svg?" alt="available-for-advisory"></a> <img src="https://img.shields.io/badge/actively%20maintained-yes-ff69b4.svg" alt="extra"> <a href="https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg"><img src="https://img.shields.io/badge/Slack-Join%20our%20tech%20community-17202A?logo=slack" alt="Slack"></a></p>
-<p>Fully auto-generated from Scaleway OpenAPI definition files:</p>
+<h2>⚡️ Installation</h2>
+<p>Install with <a href="https://npmjs.org/package/scaleway-api-client">npm</a>.</p>
+<pre><code>npm install --save scaleway-api-client@1.1.0
+</code></pre>
+<h2>👾 Authentication</h2>
+<p>Create an API token on <a href="https://console.scaleway.com/account/organization/credentials">Scaleway admin console here</a>.</p>
+<pre class="prettyprint source"><code>const Client = require('scaleway-api-client');
+
+const api = new Client(&quot;YOUR_AUTH_TOKEN_HERE&quot;);
+</code></pre>
+<h2>📘 <a href="https://scaleway-api-client.netlify.app/1.1.0/">Documentation</a></h2>
+<ul>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#AddBackendServers">AddBackendServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#AddInstanceACLRules">AddInstanceACLRules</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#AddInstanceSettings">AddInstanceSettings</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#AttachPrivateNetwork">AttachPrivateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CloneInstance">CloneInstance</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateAcl">CreateAcl</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateBackend">CreateBackend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateCertificate">CreateCertificate</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateCluster">CreateCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateDatabaseBackup">CreateDatabaseBackup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateDatabaseRoute">CreateDatabaseRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateDatabase">CreateDatabase</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateDevice">CreateDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateFrontend">CreateFrontend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateHub">CreateHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateImage">CreateImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateInstance">CreateInstance</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateIp">CreateIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateIp">CreateIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateLb">CreateLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateNamespace">CreateNamespace</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateNetwork">CreateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreatePlacementGroup">CreatePlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreatePool">CreatePool</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreatePrivateNIC">CreatePrivateNIC</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateRestRoute">CreateRestRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateS3Route">CreateS3Route</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateSecurityGroupRule">CreateSecurityGroupRule</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateSecurityGroup">CreateSecurityGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateServer">CreateServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateServer">CreateServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateSnapshot">CreateSnapshot</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateSubscriber">CreateSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateUser">CreateUser</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#CreateVolume">CreateVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteAcl">DeleteAcl</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteBackend">DeleteBackend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteCertificate">DeleteCertificate</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteCluster">DeleteCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteDatabaseBackup">DeleteDatabaseBackup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteDatabaseRoute">DeleteDatabaseRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteDatabase">DeleteDatabase</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteDevice">DeleteDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteFrontend">DeleteFrontend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteHub">DeleteHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteImage">DeleteImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteImage">DeleteImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteInstanceACLRules">DeleteInstanceACLRules</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteInstanceSettings">DeleteInstanceSettings</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteInstance">DeleteInstance</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteIp">DeleteIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteLb">DeleteLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteNamespace">DeleteNamespace</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteNetwork">DeleteNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeletePlacementGroup">DeletePlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeletePool">DeletePool</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeletePrivateNIC">DeletePrivateNIC</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteRestRoute">DeleteRestRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteS3Route">DeleteS3Route</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteSecurityGroupRule">DeleteSecurityGroupRule</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteSecurityGroup">DeleteSecurityGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteServerUserData">DeleteServerUserData</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteServer">DeleteServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteServer">DeleteServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteSnapshot">DeleteSnapshot</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteSubscriber">DeleteSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteTag">DeleteTag</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteUser">DeleteUser</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DeleteVolume">DeleteVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DetachPrivateNetwork">DetachPrivateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DisableDevice">DisableDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#DisableHub">DisableHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#EnableDevice">EnableDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#EnableHub">EnableHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ExportDatabaseBackup">ExportDatabaseBackup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetAcl">GetAcl</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetBMCAccess">GetBMCAccess</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetBackend">GetBackend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetBootscript">GetBootscript</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetCertificate">GetCertificate</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetClusterKubeConfig">GetClusterKubeConfig</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetCluster">GetCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetDashboard">GetDashboard</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetDatabaseBackup">GetDatabaseBackup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetDatabaseRoute">GetDatabaseRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetDeviceMetrics">GetDeviceMetrics</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetDevice">GetDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetFrontend">GetFrontend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetHubMetrics">GetHubMetrics</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetHub">GetHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetImage">GetImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetImage">GetImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetInstanceCertificate">GetInstanceCertificate</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetInstanceLog">GetInstanceLog</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetInstanceMetrics">GetInstanceMetrics</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetInstance">GetInstance</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetIp">GetIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetIp">GetIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetLbStats">GetLbStats</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetLb">GetLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetNamespace">GetNamespace</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetNetwork">GetNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetNode">GetNode</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetOS">GetOS</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetOffer">GetOffer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetPlacementGroupServers">GetPlacementGroupServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetPlacementGroup">GetPlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetPool">GetPool</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetPrivateNIC">GetPrivateNIC</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetRestRoute">GetRestRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetS3Route">GetS3Route</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetSecurityGroupRule">GetSecurityGroupRule</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetSecurityGroup">GetSecurityGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetServerMetrics">GetServerMetrics</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetServerTypesAvailability">GetServerTypesAvailability</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetServerUserData">GetServerUserData</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetServer">GetServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetServer">GetServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetServiceInfo">GetServiceInfo</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetSnapshot">GetSnapshot</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetSubscriber">GetSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetTag">GetTag</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetVersion">GetVersion</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#GetVolume">GetVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#InstallServer">InstallServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListAcls">ListAcls</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListBackendStats">ListBackendStats</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListBackends">ListBackends</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListBootscripts">ListBootscripts</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListCertificates">ListCertificates</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListClusterAvailableVersions">ListClusterAvailableVersions</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListClusters">ListClusters</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListDatabaseBackups">ListDatabaseBackups</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListDatabaseEngines">ListDatabaseEngines</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListDatabases">ListDatabases</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListDevices">ListDevices</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListFrontends">ListFrontends</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListHubs">ListHubs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListIPs">ListIPs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListImages">ListImages</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListImages">ListImages</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListInstanceACLRules">ListInstanceACLRules</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListInstanceLogs">ListInstanceLogs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListInstances">ListInstances</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListIps">ListIps</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListLbPrivateNetworks">ListLbPrivateNetworks</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListLbTypes">ListLbTypes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListLbs">ListLbs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListNamespaces">ListNamespaces</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListNetworks">ListNetworks</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListNodeTypes">ListNodeTypes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListNodes">ListNodes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListOS">ListOS</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListOffers">ListOffers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListPlacementGroups">ListPlacementGroups</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListPools">ListPools</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListPrivateNICs">ListPrivateNICs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListPrivileges">ListPrivileges</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListRoutes">ListRoutes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListSecurityGroupRules">ListSecurityGroupRules</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListSecurityGroups">ListSecurityGroups</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListServerActions">ListServerActions</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListServerEvents">ListServerEvents</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListServerUserData">ListServerUserData</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListServersTypes">ListServersTypes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListServers">ListServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListServers">ListServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListSnapshots">ListSnapshots</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListSubscriber">ListSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListTags">ListTags</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListUsers">ListUsers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListVersions">ListVersions</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListVolumesTypes">ListVolumesTypes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ListVolumes">ListVolumes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#MigrateLb">MigrateLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#PrepareInstanceLogs">PrepareInstanceLogs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#RebootNode">RebootNode</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#RebootServer">RebootServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ReleaseIp">ReleaseIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#RemoveBackendServers">RemoveBackendServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ReplaceNode">ReplaceNode</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ResetClusterAdminToken">ResetClusterAdminToken</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#RestoreDatabaseBackup">RestoreDatabaseBackup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#ServerAction">ServerAction</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetBackendServers">SetBackendServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetImage">SetImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetInstanceACLRules">SetInstanceACLRules</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetInstanceSettings">SetInstanceSettings</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetPlacementGroupServers">SetPlacementGroupServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetPlacementGroup">SetPlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetPrivilege">SetPrivilege</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetSecurityGroupRule">SetSecurityGroupRule</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetSecurityGroup">SetSecurityGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetServerUserData">SetServerUserData</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetSnapshot">SetSnapshot</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SetVolume">SetVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#StartBMCAccess">StartBMCAccess</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#StartServer">StartServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#StopBMCAccess">StopBMCAccess</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#StopServer">StopServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#SubscribeToLb">SubscribeToLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UnsubscribeFromLb">UnsubscribeFromLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateAcl">UpdateAcl</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateBackend">UpdateBackend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateCertificate">UpdateCertificate</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateCluster">UpdateCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateDatabaseBackup">UpdateDatabaseBackup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateDevice">UpdateDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateFrontend">UpdateFrontend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateHealthCheck">UpdateHealthCheck</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateHub">UpdateHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateIP">UpdateIP</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateImage">UpdateImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateInstance">UpdateInstance</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateIp">UpdateIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateIp">UpdateIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateLb">UpdateLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateNamespace">UpdateNamespace</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdatePlacementGroupServers">UpdatePlacementGroupServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdatePlacementGroup">UpdatePlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdatePool">UpdatePool</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateServer">UpdateServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateServer">UpdateServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateSubscriber">UpdateSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateUser">UpdateUser</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpdateVolume">UpdateVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpgradeCluster">UpgradeCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpgradeInstance">UpgradeInstance</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/1.1.0/Client.html#UpgradePool">UpgradePool</a></li>
+</ul>
+<h2>🚀 <a href="./examples">Examples</a></h2>
+<h2>😋 How it works</h2>
+<p><a href="./lib.js">lib.js</a> is fully generated from Scaleway OpenAPI definition files:</p>
 <ul>
 <li><a href="https://developers.scaleway.com/static/1e8330f12e52076eb632454487144a0c/scaleway.instance.v1.Api.yml">scaleway.instance.v1.Api.yml</a></li>
 <li><a href="https://developers.scaleway.com/static/c336c02927a3f02afc1b604751f91330/scaleway.baremetal.v1.Api.yml">scaleway.baremetal.v1.Api.yml</a></li>
@@ -87,24 +331,12 @@
 <li><a href="https://developers.scaleway.com/static/db3728b5af7492cbf74f956465ce236e/scaleway.k8s.v1.Api.yml">scaleway.k8s.v1.Api.yml</a></li>
 <li><a href="https://developers.scaleway.com/static/e21bed9bc399e3c7fcd3ad8cf7da5e8d/scaleway.iot.v1beta1.Api.yml">scaleway.iot.v1beta1.Api.yml</a></li>
 </ul>
-<h2>⚡️ Installation</h2>
-<p>Install with <a href="https://npmjs.org/package/scaleway-api-client">npm</a>.</p>
-<pre><code>npm install --save scaleway-api-client
-</code></pre>
-<h2>👾 Authentication</h2>
-<p>Create an API token on <a href="https://console.scaleway.com/account/organization/credentials">Scaleway admin console here</a>.</p>
-<pre class="prettyprint source"><code>const Client = require('scaleway-api-client');
-
-const api = new Client(&quot;YOUR_AUTH_TOKEN_HERE&quot;);
-</code></pre>
-<h2>📘 <a href="https://scaleway-api-client.netlify.app/1.0.1/">Documentation</a></h2>
-<h2>🚀 <a href="./examples">Examples</a></h2>
-<h2>Previous work</h2>
+<h2>😉 Previous work</h2>
 <ul>
 <li>https://github.com/moul/node-scaleway</li>
 <li>https://github.com/ignitial/scaleway-promised</li>
 </ul>
-<h2>You want to support my work?</h2>
+<h2>🤩 You want to support my work?</h2>
 <p>I maintain this project in my free time, if it helped you, well, I would be grateful to buy a beer thanks to your <a href="https://paypal.me/fgribreau">paypal</a> or <a href="https://www.coinbase.com/fgribreau">Bitcoins</a>, donation!</p>
 <p><a href="http://fgribreau.com">Francois-Guillaume Ribreau</a> (npm@fgribreau.com)</p></article>
     </section>
@@ -121,7 +353,7 @@ const api = new Client(&quot;YOUR_AUTH_TOKEN_HERE&quot;);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Fri Sep 11 2020 19:33:53 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Fri Sep 11 2020 20:25:18 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
