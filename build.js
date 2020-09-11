@@ -146,13 +146,16 @@ I maintain this project in my free time, if it helped you, well, I would be grat
           'href': 'https://twitter.com/FGRibreau',
           'target': '_blank',
           'class': 'menu-item',
-          'id': 'forum_link',
+        },
+        'Slack': {
+          'href': 'https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg',
+          'target': '_blank',
+          'class': 'menu-item',
         },
         'Sponsored by Bloc In Bloc': {
           'href': 'https://blocinbloc.com/',
           'target': '_blank',
           'class': 'menu-item',
-          'id': 'forum_link',
         },
       },
     },

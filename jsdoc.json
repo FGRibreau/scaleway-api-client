@@ -33,14 +33,17 @@
       "Dev by @FGRibreau": {
         "href": "https://twitter.com/FGRibreau",
         "target": "_blank",
-        "class": "menu-item",
-        "id": "forum_link"
+        "class": "menu-item"
+      },
+      "Slack": {
+        "href": "https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg",
+        "target": "_blank",
+        "class": "menu-item"
       },
       "Sponsored by Bloc In Bloc": {
         "href": "https://blocinbloc.com/",
         "target": "_blank",
-        "class": "menu-item",
-        "id": "forum_link"
+        "class": "menu-item"
       }
     }
   }
