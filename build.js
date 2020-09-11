@@ -71,7 +71,7 @@ const api = new Client("YOUR_AUTH_TOKEN_HERE");
     },
     'opts': {
       'template': 'node_modules/docdash',
-      'destination': './documentation',
+      'destination': './docs',
       'recurse': true,
     },
     'docdash': {

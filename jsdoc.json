@@ -8,7 +8,7 @@
   },
   "opts": {
     "template": "node_modules/docdash",
-    "destination": "./documentation",
+    "destination": "./docs",
     "recurse": true
   },
   "docdash": {

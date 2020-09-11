@@ -14,8 +14,5 @@ const Client = require('scaleway-api-client');
 const api = new Client("YOUR_AUTH_TOKEN_HERE");
 ```
 
-### [Documentation](./documentation)
+### [Documentation](./docs)
 ### [Examples](./examples)
-
-
-🤝 Sponsored by [Bloc in Bloc](https://blocinbloc.com/)
