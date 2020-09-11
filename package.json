@@ -4,8 +4,17 @@
   "description": "NodeJS API Client for Scaleway",
   "main": "lib.js",
   "scripts": {
+    "release": "release-it",
     "build": "node build.js",
     "doc": "jsdoc -c ./jsdoc.json"
+  },
+  "release-it": {
+    "github": {
+      "release": true
+    },
+    "hooks": {
+      "after:bump": "npm run build && npm run doc && git add docs/* && git commit -m 'doc: updated'"
+    }
   },
   "files": [
     "README.md",
@@ -44,6 +53,7 @@
     "jest": "^26.4.2",
     "jsdoc": "^3.6.5",
     "prettier": "^2.1.1",
+    "release-it": "^14.0.2",
     "yaml": "^1.10.0"
   }
 }
