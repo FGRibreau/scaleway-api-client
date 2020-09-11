@@ -51,7 +51,7 @@ function Client(auth_token){
 
 ------------------------------------------------
 
-[![Build Status](https://img.shields.io/circleci/project/github/FGRibreau/scaleway-api-client.svg)](https://circleci.com/gh/FGRibreau/scaleway-api-client/) [![Coverage Status](https://img.shields.io/coveralls/FGRibreau/scaleway-api-client/master.svg)](https://coveralls.io/github/FGRibreau/scaleway-api-client?branch=master) [![Deps](\thttps://img.shields.io/david/FGRibreau/scaleway-api-client.svg)](https://david-dm.org/FGRibreau/scaleway-api-client) [![NPM version](https://img.shields.io/npm/v/scaleway-api-client.svg)](http://badge.fury.io/js/scaleway-api-client) [![Downloads](http://img.shields.io/npm/dm/scaleway-api-client.svg)](https://www.npmjs.com/package/scaleway-api-client)
+[![Deps](\thttps://img.shields.io/david/FGRibreau/scaleway-api-client.svg)](https://david-dm.org/FGRibreau/scaleway-api-client) [![NPM version](https://img.shields.io/npm/v/scaleway-api-client.svg)](http://badge.fury.io/js/scaleway-api-client) [![Downloads](http://img.shields.io/npm/dm/scaleway-api-client.svg)](https://www.npmjs.com/package/scaleway-api-client)
 
 [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/francois-guillaume-ribreau?utm_source=github&utm_medium=button&utm_term=francois-guillaume-ribreau&utm_campaign=github)  [![available-for-advisory](https://img.shields.io/badge/available%20for%20consulting%20advisory-yes-ff69b4.svg?)](http://bit.ly/2c7uFJq) ![extra](https://img.shields.io/badge/actively%20maintained-yes-ff69b4.svg) [![Slack](https://img.shields.io/badge/Slack-Join%20our%20tech%20community-17202A?logo=slack)](https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg)
 
@@ -74,7 +74,7 @@ const Client = require('${pack.name}');
 const api = new Client("YOUR_AUTH_TOKEN_HERE");
 \`\`\`
 
-## [Documentation](./documentation)
+## [Documentation](https://scaleway-api-client.netlify.app/1.0.1/)
 ## [Examples](./examples)
 
 ## You want to support my work?
