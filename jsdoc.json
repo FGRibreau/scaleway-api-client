@@ -1,0 +1,47 @@
+{
+  "source": {
+    "include": [
+      "lib.js",
+      "package.json",
+      "README.md"
+    ]
+  },
+  "opts": {
+    "template": "node_modules/docdash",
+    "destination": "./documentation",
+    "recurse": true
+  },
+  "docdash": {
+    "openGraph": {
+      "title": "NodeJS API Client for Scaleway",
+      "type": "website",
+      "image": "",
+      "site_name": "scaleway-api-client"
+    },
+    "meta": {
+      "title": "scaleway-api-client - NodeJS API Client for Scaleway",
+      "description": "NodeJS API Client for Scaleway",
+      "keyword": "scaleway, api, client, cloud"
+    },
+    "search": true,
+    "menu": {
+      "Github": {
+        "href": "https://github.com/FGRibreau/scaleway-api-client",
+        "target": "_blank",
+        "class": "menu-item"
+      },
+      "Dev by @FGRibreau": {
+        "href": "https://twitter.com/FGRibreau",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "forum_link"
+      },
+      "Sponsored by Bloc In Bloc": {
+        "href": "https://blocinbloc.com/",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "forum_link"
+      }
+    }
+  }
+}
