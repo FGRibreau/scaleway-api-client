@@ -230,13 +230,13 @@ const api = new Client("YOUR_AUTH_TOKEN_HERE");
 
 [lib.js](./lib.js) is fully generated from Scaleway OpenAPI definition files:
 
-- [scaleway.baremetal.v1.Api.yml](.//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.baremetal.v1.Api.yml)
-- [scaleway.instance.v1.Api.yml](.//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.instance.v1.Api.yml)
-- [scaleway.iot.v1beta1.Api.yml](.//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.iot.v1beta1.Api.yml)
-- [scaleway.k8s.v1.Api.yml](.//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.k8s.v1.Api.yml)
-- [scaleway.lb.v1.Api.yml](.//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.lb.v1.Api.yml)
-- [scaleway.registry.v1.Api.yml](.//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.registry.v1.Api.yml)
-- [scaleway.vpc.v1.Api.yml](.//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.vpc.v1.Api.yml)
+- [scaleway.baremetal.v1.Api.yml](./openapi/scaleway.baremetal.v1.Api.yml)
+- [scaleway.instance.v1.Api.yml](./openapi/scaleway.instance.v1.Api.yml)
+- [scaleway.iot.v1beta1.Api.yml](./openapi/scaleway.iot.v1beta1.Api.yml)
+- [scaleway.k8s.v1.Api.yml](./openapi/scaleway.k8s.v1.Api.yml)
+- [scaleway.lb.v1.Api.yml](./openapi/scaleway.lb.v1.Api.yml)
+- [scaleway.registry.v1.Api.yml](./openapi/scaleway.registry.v1.Api.yml)
+- [scaleway.vpc.v1.Api.yml](./openapi/scaleway.vpc.v1.Api.yml)
 
 ## 😉 Previous work
 

@@ -122,7 +122,7 @@ ${
 
 [lib.js](./lib.js) is fully generated from Scaleway OpenAPI definition files:
 
-${fs.readdirSync(openapi_files_dir).map(openapi_file => `- [${openapi_file}](./${openapi_files_dir}/${openapi_file})`).join('\n')}
+${fs.readdirSync(openapi_files_dir).map(openapi_file => `- [${openapi_file}](./${path.join(path.relative(__dirname, openapi_files_dir), openapi_file)})`).join('\n')}
 
 ## 😉 Previous work
 
