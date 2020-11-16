@@ -1,0 +1,2265 @@
+openapi: 3.0.0
+info:
+  title: IoT API
+  description: |
+    # Introduction
+
+    Scaleway IoT Hub is a PaaS enabling device-to-device and device-to-Scaleway communication, you can see it as a managed message broker.
+
+    Main features:
+
+    - Pub/Sub architecture
+    - MQTT protocol, with or without TLS, with or without WebSockets
+    - Mutual authentication available on TLS connections
+    - High Availability and Scalability
+    - Routes to Scaleway's ecosystem for data ingestion
+    - Multiple other IoT Networks such as SigFox or LoRa
+    - Usage metrics
+
+    We have planned a lot of other exciting features, do not hesitate to reach out to us and say what you would like to see next!
+
+    # Where to reach us ?
+
+    We are available on [Scaleway Community Slack](http://slack.scaleway.com) on the `#iot-hub` channel.
+
+    ## Current Technical Limitations
+
+    - A single region is supported, your hub will be located in Paris, France (`fr-par`).
+
+    # Online documentation
+
+    Please refer to our [online documentation](https://www.scaleway.com/en/docs/scaleway-iothub/) to get more information.
+
+    ## Getting started with IoT Hub API
+
+    - [How to use IoT API with curl](https://www.scaleway.com/en/docs/scaleway-iothub-howto-curl/)
+  version: v1beta1
+servers:
+- url: https://api.scaleway.com
+tags:
+- name: IoT Hubs
+  description: Managed message brokers
+- name: IoT Devices
+  description: Devices allowed to connect to a Hub
+- name: IoT Routes
+  description: Managed routes
+- name: IoT Networks
+  description: Links to external IoT networks
+components:
+  schemas:
+    scaleway.iot.v1beta1.CreateDeviceResponse:
+      type: object
+      properties:
+        device:
+          type: object
+          description: Created device information
+          properties:
+            id:
+              type: string
+              description: Device ID, also used as MQTT Client ID or Username
+            name:
+              type: string
+              description: Device name
+            status:
+              type: string
+              description: Device status
+              enum:
+              - error
+              - enabled
+              - disabled
+              default: error
+            hub_id:
+              type: string
+              description: Hub ID
+            last_activity_at:
+              type: string
+              description: Device last connection/activity date
+              format: date-time
+            is_connected:
+              type: boolean
+              description: Whether the device is connected to the Hub or not
+            allow_insecure:
+              type: boolean
+              description: Whether to allow device to connect without TLS mutual authentication
+            message_filters:
+              type: object
+              description: Filter-sets to restrict the topics the device can publish/subscribe
+                to
+              properties:
+                publish:
+                  type: object
+                  description: Filter-set to restrict topics the device can publish
+                    to
+                  properties:
+                    policy:
+                      $ref: '#/components/schemas/scaleway.iot.v1beta1.DeviceMessageFilters.Policy'
+                    topics:
+                      $ref: '#/components/schemas/scaleway.std.StringsValue'
+                  x-properties-order:
+                  - policy
+                  - topics
+                subscribe:
+                  type: object
+                  description: Filter-set to restrict topics the device can subscribe
+                    to
+                  properties:
+                    policy:
+                      $ref: '#/components/schemas/scaleway.iot.v1beta1.DeviceMessageFilters.Policy'
+                    topics:
+                      $ref: '#/components/schemas/scaleway.std.StringsValue'
+                  x-properties-order:
+                  - policy
+                  - topics
+              x-properties-order:
+              - publish
+              - subscribe
+            created_at:
+              type: string
+              description: Device add date
+              format: date-time
+            updated_at:
+              type: string
+              description: Device last modification date
+              format: date-time
+            organization_id:
+              type: string
+              description: Organization owning the resource
+          x-properties-order:
+          - id
+          - name
+          - status
+          - hub_id
+          - last_activity_at
+          - is_connected
+          - allow_insecure
+          - message_filters
+          - created_at
+          - updated_at
+          - organization_id
+        crt:
+          type: string
+          description: Device certificate
+        key:
+          type: string
+          description: Device certificate key
+      x-properties-order:
+      - device
+      - crt
+      - key
+    scaleway.iot.v1beta1.CreateNetworkResponse:
+      type: object
+      properties:
+        network:
+          type: object
+          description: Created network
+          properties:
+            id:
+              type: string
+              description: Network ID
+            name:
+              type: string
+              description: Network name
+            type:
+              type: string
+              description: Type of network to connect with
+              enum:
+              - unknown
+              - sigfox
+              - rest
+              default: unknown
+            endpoint:
+              type: string
+              description: Endpoint to use for interacting with the network
+            hub_id:
+              type: string
+              description: Hub ID to connect the Network to
+            created_at:
+              type: string
+              description: Network creation date
+              format: date-time
+            topic_prefix:
+              type: string
+              description: This prefix will be prepended to all topics for this Network.
+            region:
+              type: string
+              description: Region of the Network
+            organization_id:
+              type: string
+              description: Organization owning the resource
+          x-properties-order:
+          - id
+          - name
+          - type
+          - endpoint
+          - hub_id
+          - created_at
+          - topic_prefix
+          - region
+          - organization_id
+        secret:
+          type: string
+          description: Endpoint Key to keep secret. This cannot be retrieved later
+      x-properties-order:
+      - network
+      - secret
+    scaleway.iot.v1beta1.DatabaseRoute:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Route ID
+        name:
+          type: string
+          description: Route name
+        organization_id:
+          type: string
+          description: Organization owning the route
+        hub_id:
+          type: string
+          description: ID of the route's hub
+        topic:
+          type: string
+          description: Topic the route subscribes to (wildcards allowed). It must
+            be a valid MQTT topic and up to 65535 characters
+        created_at:
+          type: string
+          description: Route creation date
+          format: date-time
+        query:
+          type: string
+          description: SQL query to be executed ($TOPIC and $PAYLOAD variables are
+            available, see documentation)
+        database:
+          type: object
+          description: Database settings
+          properties:
+            host:
+              type: string
+              description: Database host
+            port:
+              type: number
+              description: Database port
+            dbname:
+              type: string
+              description: Database name
+            username:
+              type: string
+              description: Database username. Make sure this account can execute the
+                provided query
+            password:
+              type: string
+              description: Database password
+          required:
+          - host
+          - port
+          - dbname
+          - username
+          - password
+          x-properties-order:
+          - host
+          - port
+          - dbname
+          - username
+          - password
+      x-properties-order:
+      - id
+      - name
+      - organization_id
+      - hub_id
+      - topic
+      - created_at
+      - query
+      - database
+    scaleway.iot.v1beta1.Device:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Device ID, also used as MQTT Client ID or Username
+        name:
+          type: string
+          description: Device name
+        status:
+          type: string
+          description: Device status
+          enum:
+          - error
+          - enabled
+          - disabled
+          default: error
+        hub_id:
+          type: string
+          description: Hub ID
+        last_activity_at:
+          type: string
+          description: Device last connection/activity date
+          format: date-time
+        is_connected:
+          type: boolean
+          description: Whether the device is connected to the Hub or not
+        allow_insecure:
+          type: boolean
+          description: Whether to allow device to connect without TLS mutual authentication
+        message_filters:
+          type: object
+          description: Filter-sets to restrict the topics the device can publish/subscribe
+            to
+          properties:
+            publish:
+              type: object
+              description: Filter-set to restrict topics the device can publish to
+              properties:
+                policy:
+                  $ref: '#/components/schemas/scaleway.iot.v1beta1.DeviceMessageFilters.Policy'
+                topics:
+                  $ref: '#/components/schemas/scaleway.std.StringsValue'
+              x-properties-order:
+              - policy
+              - topics
+            subscribe:
+              type: object
+              description: Filter-set to restrict topics the device can subscribe
+                to
+              properties:
+                policy:
+                  $ref: '#/components/schemas/scaleway.iot.v1beta1.DeviceMessageFilters.Policy'
+                topics:
+                  $ref: '#/components/schemas/scaleway.std.StringsValue'
+              x-properties-order:
+              - policy
+              - topics
+          x-properties-order:
+          - publish
+          - subscribe
+        created_at:
+          type: string
+          description: Device add date
+          format: date-time
+        updated_at:
+          type: string
+          description: Device last modification date
+          format: date-time
+        organization_id:
+          type: string
+          description: Organization owning the resource
+      x-properties-order:
+      - id
+      - name
+      - status
+      - hub_id
+      - last_activity_at
+      - is_connected
+      - allow_insecure
+      - message_filters
+      - created_at
+      - updated_at
+      - organization_id
+    scaleway.iot.v1beta1.DeviceMessageFilters.Policy:
+      type: string
+      enum:
+      - unknown
+      - accept
+      - reject
+      default: unknown
+    scaleway.iot.v1beta1.Hub:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Hub ID
+        name:
+          type: string
+          description: Hub name
+        status:
+          type: string
+          description: Current status of the Hub
+          enum:
+          - error
+          - enabling
+          - ready
+          - disabling
+          - disabled
+          default: error
+        product_plan:
+          type: string
+          description: Hub feature set
+          enum:
+          - plan_unknown
+          - plan_shared
+          - plan_dedicated
+          - plan_ha
+          default: plan_unknown
+        enabled:
+          type: boolean
+          description: Whether the hub has been enabled
+        device_count:
+          type: number
+          description: Number of registered devices
+        connected_device_count:
+          type: number
+          description: Number of currently connected devices
+        endpoint:
+          type: string
+          description: Devices should be connected to this host, port may be 1883
+            (MQTT), 8883 (MQTT over TLS), 80 (MQTT over Websocket) or 443 (MQTT over
+            Websocket over TLS).
+        events_enabled:
+          type: boolean
+          description: Wether Hub events are enabled or not
+        events_topic_prefix:
+          type: string
+          description: Hub events topic prefix
+        region:
+          type: string
+          description: Region of the Hub
+        created_at:
+          type: string
+          description: Hub creation date
+          format: date-time
+        updated_at:
+          type: string
+          description: Hub last modification date
+          format: date-time
+        organization_id:
+          type: string
+          description: Organization owning the resource
+      x-properties-order:
+      - id
+      - name
+      - status
+      - product_plan
+      - enabled
+      - device_count
+      - connected_device_count
+      - endpoint
+      - events_enabled
+      - events_topic_prefix
+      - region
+      - created_at
+      - updated_at
+      - organization_id
+    scaleway.iot.v1beta1.ListDevicesResponse:
+      type: object
+      properties:
+        total_count:
+          type: number
+          description: Total number of devices
+        devices:
+          type: array
+          description: A page of devices
+          items:
+            $ref: '#/components/schemas/scaleway.iot.v1beta1.Device'
+      x-properties-order:
+      - total_count
+      - devices
+    scaleway.iot.v1beta1.ListHubsResponse:
+      type: object
+      properties:
+        total_count:
+          type: number
+          description: Total number of hubs
+        hubs:
+          type: array
+          description: A page of hubs
+          items:
+            $ref: '#/components/schemas/scaleway.iot.v1beta1.Hub'
+      x-properties-order:
+      - total_count
+      - hubs
+    scaleway.iot.v1beta1.ListNetworksResponse:
+      type: object
+      properties:
+        total_count:
+          type: number
+          description: Total number of Networks
+        networks:
+          type: array
+          description: A page of networks
+          items:
+            $ref: '#/components/schemas/scaleway.iot.v1beta1.Network'
+      x-properties-order:
+      - total_count
+      - networks
+    scaleway.iot.v1beta1.ListRoutesResponse:
+      type: object
+      properties:
+        total_count:
+          type: number
+          description: Total number of routes
+        routes:
+          type: array
+          description: A page of routes
+          items:
+            $ref: '#/components/schemas/scaleway.iot.v1beta1.Route'
+      x-properties-order:
+      - total_count
+      - routes
+    scaleway.iot.v1beta1.Metrics:
+      type: object
+      properties:
+        metrics:
+          type: array
+          description: Metrics for a hub or a device, over the requested period
+          items:
+            $ref: '#/components/schemas/scaleway.iot.v1beta1.Metrics.Metric'
+      x-properties-order:
+      - metrics
+    scaleway.iot.v1beta1.Metrics.Metric:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Metric name
+        values:
+          type: array
+          description: Metric values over the selected period
+          items:
+            $ref: '#/components/schemas/scaleway.iot.v1beta1.Metrics.Metric.Value'
+      x-properties-order:
+      - name
+      - values
+    scaleway.iot.v1beta1.Metrics.Metric.Value:
+      type: object
+      properties:
+        time:
+          type: string
+          description: Timestamp for the value
+          format: date-time
+        value:
+          type: number
+          description: Numeric value
+      x-properties-order:
+      - time
+      - value
+    scaleway.iot.v1beta1.Network:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Network ID
+        name:
+          type: string
+          description: Network name
+        type:
+          type: string
+          description: Type of network to connect with
+          enum:
+          - unknown
+          - sigfox
+          - rest
+          default: unknown
+        endpoint:
+          type: string
+          description: Endpoint to use for interacting with the network
+        hub_id:
+          type: string
+          description: Hub ID to connect the Network to
+        created_at:
+          type: string
+          description: Network creation date
+          format: date-time
+        topic_prefix:
+          type: string
+          description: This prefix will be prepended to all topics for this Network.
+        region:
+          type: string
+          description: Region of the Network
+        organization_id:
+          type: string
+          description: Organization owning the resource
+      x-properties-order:
+      - id
+      - name
+      - type
+      - endpoint
+      - hub_id
+      - created_at
+      - topic_prefix
+      - region
+      - organization_id
+    scaleway.iot.v1beta1.RestRoute:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Route ID
+        name:
+          type: string
+          description: Route name
+        organization_id:
+          type: string
+          description: Organization owning the route
+        hub_id:
+          type: string
+          description: ID of the route's hub
+        topic:
+          type: string
+          description: Topic the route subscribes to. It must be a valid MQTT topic
+            and up to 65535 characters
+        created_at:
+          type: string
+          description: Route creation date
+          format: date-time
+        verb:
+          type: string
+          description: HTTP Verb used to call REST URI
+          enum:
+          - get
+          - post
+          - put
+          - patch
+          - delete
+          default: get
+        uri:
+          type: string
+          description: URI of the REST endpoint
+        headers:
+          type: object
+          description: HTTP call extra headers
+          properties:
+            <headerKey>:
+              type: string
+          additionalProperties: true
+      x-properties-order:
+      - id
+      - name
+      - organization_id
+      - hub_id
+      - topic
+      - created_at
+      - verb
+      - uri
+      - headers
+    scaleway.iot.v1beta1.Route:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Route ID
+        name:
+          type: string
+          description: Route name
+        organization_id:
+          type: string
+          description: Organization owning the resource
+        hub_id:
+          type: string
+          description: ID of the route's hub
+        topic:
+          type: string
+          description: Topic the route subscribes to. It must be a valid MQTT topic
+            and up to 65535 characters
+        type:
+          type: string
+          description: Route type
+          enum:
+          - unknown
+          - s3
+          - functions
+          - database
+          - rest
+          default: unknown
+        created_at:
+          type: string
+          description: Route creation date
+          format: date-time
+      x-properties-order:
+      - id
+      - name
+      - organization_id
+      - hub_id
+      - topic
+      - type
+      - created_at
+    scaleway.iot.v1beta1.S3Route:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Route ID
+        name:
+          type: string
+          description: Route name
+        organization_id:
+          type: string
+          description: Organization owning the route
+        hub_id:
+          type: string
+          description: ID of the route's hub
+        topic:
+          type: string
+          description: Topic the route subscribes to. It must be a valid MQTT topic
+            and up to 65535 characters
+        created_at:
+          type: string
+          description: Route creation date
+          format: date-time
+        bucket_region:
+          type: string
+          description: Region of the S3 route's destination bucket (eg 'fr-par')
+        bucket_name:
+          type: string
+          description: Name of the S3 route's destination bucket
+        object_prefix:
+          type: string
+          description: Optional string to prefix object names with
+        strategy:
+          type: string
+          description: 'How the S3 route''s objects will be created: one per topic
+            or one per message'
+          enum:
+          - per_topic
+          - per_message
+          default: per_topic
+      x-properties-order:
+      - id
+      - name
+      - organization_id
+      - hub_id
+      - topic
+      - created_at
+      - bucket_region
+      - bucket_name
+      - object_prefix
+      - strategy
+    scaleway.std.StringsValue:
+      type: array
+      nullable: true
+      items:
+        type: string
+  securitySchemes:
+    scaleway:
+      in: header
+      name: X-Auth-Token
+      type: apiKey
+paths:
+  /iot/v1beta1/regions/{region}/devices:
+    get:
+      tags:
+      - IoT Devices
+      operationId: ListDevices
+      summary: List devices
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: query
+        name: page
+        description: Page number
+        schema:
+          type: number
+          description: Page number
+          default: 1
+      - in: query
+        name: page_size
+        description: Page size. The maximum value is 100
+        schema:
+          type: number
+          description: Page size. The maximum value is 100
+          default: 20
+      - in: query
+        name: order_by
+        description: Ordering of requested devices
+        schema:
+          type: string
+          description: Ordering of requested devices
+          enum:
+          - name_asc
+          - name_desc
+          - status_asc
+          - status_desc
+          - hub_id_asc
+          - hub_id_desc
+          - created_at_asc
+          - created_at_desc
+          - updated_at_asc
+          - updated_at_desc
+          - allow_insecure_asc
+          - allow_insecure_desc
+          default: name_asc
+      - in: query
+        name: organization_id
+        description: Filter on the organization
+        schema:
+          type: string
+          description: Filter on the organization
+          nullable: true
+      - in: query
+        name: name
+        description: Filter on the name
+        schema:
+          type: string
+          description: Filter on the name
+          nullable: true
+      - in: query
+        name: hub_id
+        description: Filter on the hub
+        schema:
+          type: string
+          description: Filter on the hub
+          nullable: true
+      - in: query
+        name: enabled
+        description: Deprecated, ignored filter
+        schema:
+          type: boolean
+          description: Deprecated, ignored filter
+          deprecated: true
+          nullable: true
+        deprecated: true
+      - in: query
+        name: allow_insecure
+        description: Filter on the allow_insecure flag
+        schema:
+          type: boolean
+          description: Filter on the allow_insecure flag
+          nullable: true
+      - in: query
+        name: is_connected
+        description: Deprecated, ignored filter
+        schema:
+          type: boolean
+          description: Deprecated, ignored filter
+          deprecated: true
+          nullable: true
+        deprecated: true
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.ListDevicesResponse'
+      security:
+      - scaleway: []
+    post:
+      tags:
+      - IoT Devices
+      operationId: CreateDevice
+      summary: Add a device
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.CreateDeviceResponse'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Device name
+                hub_id:
+                  type: string
+                  description: ID of the device's hub
+                allow_insecure:
+                  type: boolean
+                  description: Allow plain and server-authenticated SSL connections
+                    in addition to mutually-authenticated ones
+                message_filters:
+                  type: object
+                  description: Filter-sets to authorize or deny the device to publish/subscribe
+                    to specific topics
+                  properties:
+                    publish:
+                      type: object
+                      description: Filter-set to restrict topics the device can publish
+                        to
+                      properties:
+                        policy:
+                          $ref: '#/components/schemas/scaleway.iot.v1beta1.DeviceMessageFilters.Policy'
+                        topics:
+                          $ref: '#/components/schemas/scaleway.std.StringsValue'
+                      x-properties-order:
+                      - policy
+                      - topics
+                    subscribe:
+                      type: object
+                      description: Filter-set to restrict topics the device can subscribe
+                        to
+                      properties:
+                        policy:
+                          $ref: '#/components/schemas/scaleway.iot.v1beta1.DeviceMessageFilters.Policy'
+                        topics:
+                          $ref: '#/components/schemas/scaleway.std.StringsValue'
+                      x-properties-order:
+                      - policy
+                      - topics
+                  x-properties-order:
+                  - publish
+                  - subscribe
+              required:
+              - name
+              - hub_id
+              x-properties-order:
+              - name
+              - hub_id
+              - allow_insecure
+              - message_filters
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/devices/{device_id}:
+    get:
+      tags:
+      - IoT Devices
+      operationId: GetDevice
+      summary: Get a device
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: device_id
+        description: Device ID
+        required: true
+        schema:
+          type: string
+          description: Device ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Device'
+      security:
+      - scaleway: []
+    patch:
+      tags:
+      - IoT Devices
+      operationId: UpdateDevice
+      summary: Update a device
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: device_id
+        description: Device ID
+        required: true
+        schema:
+          type: string
+          description: Device ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Device'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Device name
+                  nullable: true
+                allow_insecure:
+                  type: boolean
+                  description: Allow plain and server-authenticated SSL connections
+                    in addition to mutually-authenticated ones
+                  nullable: true
+                message_filters:
+                  type: object
+                  description: Filter-sets to restrict the topics the device can publish/subscribe
+                    to
+                  properties:
+                    publish:
+                      type: object
+                      description: Filter-set to restrict topics the device can publish
+                        to
+                      properties:
+                        policy:
+                          $ref: '#/components/schemas/scaleway.iot.v1beta1.DeviceMessageFilters.Policy'
+                        topics:
+                          $ref: '#/components/schemas/scaleway.std.StringsValue'
+                      x-properties-order:
+                      - policy
+                      - topics
+                    subscribe:
+                      type: object
+                      description: Filter-set to restrict topics the device can subscribe
+                        to
+                      properties:
+                        policy:
+                          $ref: '#/components/schemas/scaleway.iot.v1beta1.DeviceMessageFilters.Policy'
+                        topics:
+                          $ref: '#/components/schemas/scaleway.std.StringsValue'
+                      x-properties-order:
+                      - policy
+                      - topics
+                  x-properties-order:
+                  - publish
+                  - subscribe
+                hub_id:
+                  type: string
+                  description: Change Hub for this device, additional fees may apply,
+                    see IoT Hub pricing
+                  nullable: true
+              x-properties-order:
+              - name
+              - allow_insecure
+              - message_filters
+              - hub_id
+      security:
+      - scaleway: []
+    delete:
+      tags:
+      - IoT Devices
+      operationId: DeleteDevice
+      summary: Remove a device
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: device_id
+        description: Device ID
+        required: true
+        schema:
+          type: string
+          description: Device ID
+      responses:
+        "204":
+          description: ""
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/devices/{device_id}/disable:
+    post:
+      tags:
+      - IoT Devices
+      operationId: DisableDevice
+      summary: Disable a device
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: device_id
+        description: Device ID
+        required: true
+        schema:
+          type: string
+          description: Device ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Device'
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/devices/{device_id}/enable:
+    post:
+      tags:
+      - IoT Devices
+      operationId: EnableDevice
+      summary: Enable a device
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: device_id
+        description: Device ID
+        required: true
+        schema:
+          type: string
+          description: Device ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Device'
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/devices/{device_id}/metrics:
+    get:
+      tags:
+      - IoT Devices
+      operationId: GetDeviceMetrics
+      summary: Get a device's metrics
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: device_id
+        description: Device ID
+        required: true
+        schema:
+          type: string
+          description: Device ID
+      - in: query
+        name: period
+        description: Period over which the metrics span
+        required: true
+        schema:
+          type: string
+          description: Period over which the metrics span
+          enum:
+          - hour
+          - day
+          - week
+          - month
+          - year
+          default: hour
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Metrics'
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/hubs:
+    get:
+      tags:
+      - IoT Hubs
+      operationId: ListHubs
+      summary: List hubs
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: query
+        name: page
+        description: Page number
+        schema:
+          type: number
+          description: Page number
+          default: 1
+      - in: query
+        name: page_size
+        description: Page size. The maximum value is 100
+        schema:
+          type: number
+          description: Page size. The maximum value is 100
+          default: 20
+      - in: query
+        name: order_by
+        description: Ordering of requested hub
+        schema:
+          type: string
+          description: Ordering of requested hub
+          enum:
+          - name_asc
+          - name_desc
+          - status_asc
+          - status_desc
+          - product_plan_asc
+          - product_plan_desc
+          - created_at_asc
+          - created_at_desc
+          - updated_at_asc
+          - updated_at_desc
+          default: name_asc
+      - in: query
+        name: organization_id
+        description: Filter on the organization
+        schema:
+          type: string
+          description: Filter on the organization
+          nullable: true
+      - in: query
+        name: name
+        description: Filter on the name
+        schema:
+          type: string
+          description: Filter on the name
+          nullable: true
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.ListHubsResponse'
+      security:
+      - scaleway: []
+    post:
+      tags:
+      - IoT Hubs
+      operationId: CreateHub
+      summary: Create a hub
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Hub'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Hub name (up to 255 characters)
+                organization_id:
+                  type: string
+                  description: Organization owning the resource
+                product_plan:
+                  type: string
+                  description: Hub feature set
+                  enum:
+                  - plan_unknown
+                  - plan_shared
+                  - plan_dedicated
+                  - plan_ha
+                  default: plan_shared
+                disable_events:
+                  type: boolean
+                  description: Disable Hub events (default false)
+                  nullable: true
+                events_topic_prefix:
+                  type: string
+                  description: Hub events topic prefix (default '$SCW/events')
+                  nullable: true
+              required:
+              - name
+              - organization_id
+              - product_plan
+              x-properties-order:
+              - name
+              - organization_id
+              - product_plan
+              - disable_events
+              - events_topic_prefix
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/hubs/{hub_id}:
+    get:
+      tags:
+      - IoT Hubs
+      operationId: GetHub
+      summary: Get a hub
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: hub_id
+        description: Hub ID
+        required: true
+        schema:
+          type: string
+          description: Hub ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Hub'
+      security:
+      - scaleway: []
+    patch:
+      tags:
+      - IoT Hubs
+      operationId: UpdateHub
+      summary: Update a hub
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: hub_id
+        description: Hub ID
+        required: true
+        schema:
+          type: string
+          description: Hub ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Hub'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Hub name (up to 255 characters)
+                  nullable: true
+                product_plan:
+                  type: string
+                  description: Hub feature set
+                  enum:
+                  - plan_unknown
+                  - plan_shared
+                  - plan_dedicated
+                  - plan_ha
+                  default: plan_unknown
+                disable_events:
+                  type: boolean
+                  description: Disable Hub events
+                  nullable: true
+                events_topic_prefix:
+                  type: string
+                  description: Hub events topic prefix
+                  nullable: true
+              x-properties-order:
+              - name
+              - product_plan
+              - disable_events
+              - events_topic_prefix
+      security:
+      - scaleway: []
+    delete:
+      tags:
+      - IoT Hubs
+      operationId: DeleteHub
+      summary: Delete a hub
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: hub_id
+        description: Hub ID
+        required: true
+        schema:
+          type: string
+          description: Hub ID
+      responses:
+        "204":
+          description: ""
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delete_devices:
+                  type: boolean
+                  description: Force deletion of devices added to this hub instead
+                    of rejecting operation
+                  nullable: true
+              x-properties-order:
+              - delete_devices
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/hubs/{hub_id}/disable:
+    post:
+      tags:
+      - IoT Hubs
+      operationId: DisableHub
+      summary: Disable a hub
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: hub_id
+        description: Hub ID
+        required: true
+        schema:
+          type: string
+          description: Hub ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Hub'
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/hubs/{hub_id}/enable:
+    post:
+      tags:
+      - IoT Hubs
+      operationId: EnableHub
+      summary: Enable a hub
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: hub_id
+        description: Hub ID
+        required: true
+        schema:
+          type: string
+          description: Hub ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Hub'
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/hubs/{hub_id}/metrics:
+    get:
+      tags:
+      - IoT Hubs
+      operationId: GetHubMetrics
+      summary: Get a hub's metrics
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: hub_id
+        description: Hub ID
+        required: true
+        schema:
+          type: string
+          description: Hub ID
+      - in: query
+        name: period
+        description: Period over which the metrics span
+        required: true
+        schema:
+          type: string
+          description: Period over which the metrics span
+          enum:
+          - hour
+          - day
+          - week
+          - month
+          - year
+          default: hour
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Metrics'
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/networks:
+    get:
+      tags:
+      - IoT Networks
+      operationId: ListNetworks
+      summary: List the Networks
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: query
+        name: page
+        description: Page number
+        schema:
+          type: number
+          description: Page number
+          default: 1
+      - in: query
+        name: page_size
+        description: Page size. The maximum value is 100
+        schema:
+          type: number
+          description: Page size. The maximum value is 100
+          default: 20
+      - in: query
+        name: order_by
+        description: Ordering of requested routes
+        schema:
+          type: string
+          description: Ordering of requested routes
+          enum:
+          - name_asc
+          - name_desc
+          - type_asc
+          - type_desc
+          - created_at_asc
+          - created_at_desc
+          default: name_asc
+      - in: query
+        name: organization_id
+        description: Filter on the organization
+        schema:
+          type: string
+          description: Filter on the organization
+          nullable: true
+      - in: query
+        name: name
+        description: Filter on Network name
+        schema:
+          type: string
+          description: Filter on Network name
+          nullable: true
+      - in: query
+        name: hub_id
+        description: Filter on the hub
+        schema:
+          type: string
+          description: Filter on the hub
+          nullable: true
+      - in: query
+        name: topic_prefix
+        description: Filter on the topic prefix
+        schema:
+          type: string
+          description: Filter on the topic prefix
+          nullable: true
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.ListNetworksResponse'
+      security:
+      - scaleway: []
+    post:
+      tags:
+      - IoT Networks
+      operationId: CreateNetwork
+      summary: Create a new Network
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.CreateNetworkResponse'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Network name
+                organization_id:
+                  type: string
+                  description: Will always be assigned to the organization owning
+                    the IoT hub.
+                  deprecated: true
+                type:
+                  type: string
+                  description: Type of network to connect with
+                  enum:
+                  - unknown
+                  - sigfox
+                  - rest
+                  default: unknown
+                hub_id:
+                  type: string
+                  description: Hub ID to connect the Network to
+                topic_prefix:
+                  type: string
+                  description: Topic prefix for the Network
+              required:
+              - name
+              - type
+              - hub_id
+              - topic_prefix
+              x-properties-order:
+              - name
+              - organization_id
+              - type
+              - hub_id
+              - topic_prefix
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/networks/{network_id}:
+    get:
+      tags:
+      - IoT Networks
+      operationId: GetNetwork
+      summary: Retrieve a specific Network
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: network_id
+        description: Network ID
+        required: true
+        schema:
+          type: string
+          description: Network ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.Network'
+      security:
+      - scaleway: []
+    delete:
+      tags:
+      - IoT Networks
+      operationId: DeleteNetwork
+      summary: Delete a Network
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: network_id
+        description: Network ID
+        required: true
+        schema:
+          type: string
+          description: Network ID
+      responses:
+        "204":
+          description: ""
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/routes:
+    get:
+      tags:
+      - IoT Routes
+      operationId: ListRoutes
+      summary: List routes
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: query
+        name: page
+        description: Page number
+        schema:
+          type: number
+          description: Page number
+          default: 1
+      - in: query
+        name: page_size
+        description: Page size. The maximum value is 100
+        schema:
+          type: number
+          description: Page size. The maximum value is 100
+          default: 20
+      - in: query
+        name: order_by
+        description: Ordering of requested routes
+        schema:
+          type: string
+          description: Ordering of requested routes
+          enum:
+          - name_asc
+          - name_desc
+          - hub_id_asc
+          - hub_id_desc
+          - type_asc
+          - type_desc
+          - created_at_asc
+          - created_at_desc
+          default: name_asc
+      - in: query
+        name: organization_id
+        description: Filter on the organization
+        schema:
+          type: string
+          description: Filter on the organization
+          nullable: true
+      - in: query
+        name: hub_id
+        description: Filter on the hub
+        schema:
+          type: string
+          description: Filter on the hub
+          nullable: true
+      - in: query
+        name: name
+        description: Filter on route's name
+        schema:
+          type: string
+          description: Filter on route's name
+          nullable: true
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.ListRoutesResponse'
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/routes/database:
+    post:
+      tags:
+      - IoT Routes
+      operationId: CreateDatabaseRoute
+      summary: Create a Database route
+      description: |
+        Create a route that will record subscribed MQTT messages into your database.
+        <b>You need to manage the database by yourself</b>.
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.DatabaseRoute'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the route
+                hub_id:
+                  type: string
+                  description: ID of the route's hub
+                topic:
+                  type: string
+                  description: Topic the route subscribes to (wildcards allowed).
+                    It must be a valid MQTT topic and up to 65535 characters
+                query:
+                  type: string
+                  description: SQL query to be executed ($TOPIC and $PAYLOAD variables
+                    are available, see documentation)
+                database:
+                  type: object
+                  description: Database settings
+                  properties:
+                    host:
+                      type: string
+                      description: Database host
+                    port:
+                      type: number
+                      description: Database port
+                    dbname:
+                      type: string
+                      description: Database name
+                    username:
+                      type: string
+                      description: Database username. Make sure this account can execute
+                        the provided query
+                    password:
+                      type: string
+                      description: Database password
+                  required:
+                  - host
+                  - port
+                  - dbname
+                  - username
+                  - password
+                  x-properties-order:
+                  - host
+                  - port
+                  - dbname
+                  - username
+                  - password
+              required:
+              - name
+              - hub_id
+              - topic
+              - query
+              - database
+              x-properties-order:
+              - name
+              - hub_id
+              - topic
+              - query
+              - database
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/routes/database/{route_id}:
+    get:
+      tags:
+      - IoT Routes
+      operationId: GetDatabaseRoute
+      summary: Get a Database route
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: route_id
+        description: Route ID
+        required: true
+        schema:
+          type: string
+          description: Route ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.DatabaseRoute'
+      security:
+      - scaleway: []
+    delete:
+      tags:
+      - IoT Routes
+      operationId: DeleteDatabaseRoute
+      summary: Delete a Database route
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: route_id
+        description: Route ID
+        required: true
+        schema:
+          type: string
+          description: Route ID
+      responses:
+        "204":
+          description: ""
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/routes/rest:
+    post:
+      tags:
+      - IoT Routes
+      operationId: CreateRestRoute
+      summary: Create a Rest route
+      description: |
+        Create a route that will call a REST API on received subscribed MQTT messages.
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.RestRoute'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the route
+                hub_id:
+                  type: string
+                  description: ID of the route's hub
+                topic:
+                  type: string
+                  description: Topic the route subscribes to. It must be a valid MQTT
+                    topic and up to 65535 characters
+                verb:
+                  type: string
+                  description: HTTP Verb used to call REST URI
+                  enum:
+                  - get
+                  - post
+                  - put
+                  - patch
+                  - delete
+                  default: get
+                uri:
+                  type: string
+                  description: URI of the REST endpoint
+                headers:
+                  type: object
+                  description: HTTP call extra headers
+                  properties:
+                    <headerKey>:
+                      type: string
+                  additionalProperties: true
+              required:
+              - name
+              - hub_id
+              - topic
+              x-properties-order:
+              - name
+              - hub_id
+              - topic
+              - verb
+              - uri
+              - headers
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/routes/rest/{route_id}:
+    get:
+      tags:
+      - IoT Routes
+      operationId: GetRestRoute
+      summary: Get a Rest route
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: route_id
+        description: Route ID
+        required: true
+        schema:
+          type: string
+          description: Route ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.RestRoute'
+      security:
+      - scaleway: []
+    delete:
+      tags:
+      - IoT Routes
+      operationId: DeleteRestRoute
+      summary: Delete a Rest route
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: route_id
+        description: Route ID
+        required: true
+        schema:
+          type: string
+          description: Route ID
+      responses:
+        "204":
+          description: ""
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/routes/s3:
+    post:
+      tags:
+      - IoT Routes
+      operationId: CreateS3Route
+      summary: Create an S3 route
+      description: |
+        Create a route that will put subscribed MQTT messages into an S3 bucket.
+        You need to create the bucket yourself and grant us write access:
+        ```bash
+        > s3cmd setacl s3://<my-bucket> --acl-grant=write:555c69c3-87d0-4bf8-80f1-99a2f757d031:555c69c3-87d0-4bf8-80f1-99a2f757d031
+        ```
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.S3Route'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the route
+                hub_id:
+                  type: string
+                  description: ID of the route's hub
+                topic:
+                  type: string
+                  description: Topic the route subscribes to. It must be a valid MQTT
+                    topic and up to 65535 characters
+                bucket_region:
+                  type: string
+                  description: Region of the S3 route's destination bucket (eg 'fr-par')
+                bucket_name:
+                  type: string
+                  description: Name of the S3 route's destination bucket
+                object_prefix:
+                  type: string
+                  description: Optional string to prefix object names with
+                strategy:
+                  type: string
+                  description: 'How the S3 route''s objects will be created: one per
+                    topic or one per message'
+                  enum:
+                  - per_topic
+                  - per_message
+                  default: per_topic
+              required:
+              - hub_id
+              - topic
+              - bucket_region
+              - bucket_name
+              - strategy
+              x-properties-order:
+              - name
+              - hub_id
+              - topic
+              - bucket_region
+              - bucket_name
+              - object_prefix
+              - strategy
+      security:
+      - scaleway: []
+  /iot/v1beta1/regions/{region}/routes/s3/{route_id}:
+    get:
+      tags:
+      - IoT Routes
+      operationId: GetS3Route
+      summary: Get an S3 route
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: route_id
+        description: Route ID
+        required: true
+        schema:
+          type: string
+          description: Route ID
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scaleway.iot.v1beta1.S3Route'
+      security:
+      - scaleway: []
+    delete:
+      tags:
+      - IoT Routes
+      operationId: DeleteS3Route
+      summary: Delete an S3 route
+      parameters:
+      - in: path
+        name: region
+        description: The region you want to target
+        required: true
+        schema:
+          type: string
+          description: The region you want to target
+          enum:
+          - fr-par
+      - in: path
+        name: route_id
+        description: Route ID
+        required: true
+        schema:
+          type: string
+          description: Route ID
+      responses:
+        "204":
+          description: ""
+      security:
+      - scaleway: []

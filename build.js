@@ -5,22 +5,45 @@ const fs = require('fs');
 const pack = require('./package.json');
 const path = require('path');
 
-const openapi_urls = [
-  'https://developers.scaleway.com/static/1e8330f12e52076eb632454487144a0c/scaleway.instance.v1.Api.yml',
-  'https://developers.scaleway.com/static/c336c02927a3f02afc1b604751f91330/scaleway.baremetal.v1.Api.yml',
-  'https://developers.scaleway.com/static/8a462da68554426057bfe403ba3ac65f/scaleway.lb.v1.Api.yml',
-  'https://developers.scaleway.com/static/c2ed334cada6e826be4cfb5e3e2c06a5/scaleway.registry.v1.Api.yml',
-  'https://developers.scaleway.com/static/957d68ee68346376b47e130cb1b239f7/scaleway.rdb.v1.Api.yml',
-  'https://developers.scaleway.com/static/db3728b5af7492cbf74f956465ce236e/scaleway.k8s.v1.Api.yml',
-  'https://developers.scaleway.com/static/e21bed9bc399e3c7fcd3ad8cf7da5e8d/scaleway.iot.v1beta1.Api.yml'];
 
-Promise.all(openapi_urls.map(openapi_url => axios.get(openapi_url).then(res => YAML.parse(res.data))))
+// We could not find any reliable (over time) URL for Api definition
+// So we scrape them ourselves :)
+
+const BASE_PATH = 'https://developers.scaleway.com/';
+const doc_urls = [
+  `${BASE_PATH}/en/products/instance/api/`,
+  `${BASE_PATH}/en/products/baremetal/api/`,
+  `${BASE_PATH}/en/products/lb/api/`,
+  `${BASE_PATH}/en/products/registry/api/`,
+  `${BASE_PATH}/en/products/k8s/api/`,
+  `${BASE_PATH}/en/products/iot/api/`,
+  `${BASE_PATH}/en/products/vpc/api/`,
+];
+
+const openapi_files_dir = path.resolve(__dirname, 'openapi');
+
+function load_openapi_url(openapi_url) {
+  return axios.get(openapi_url)
+    .then(res => {
+      fs.writeFileSync(path.join(openapi_files_dir, path.basename(openapi_url)), res.data, 'utf8');
+      return res;
+    })
+    .then(res => YAML.parse(res.data))
+
+}
+
+const OPEN_API_URL_REGEXP = /(\/static\/[a-z0-9]{32}\/[^"]+)/;
+Promise
+  .all(doc_urls.map(url => axios.get(url)
+    .then(res => BASE_PATH + OPEN_API_URL_REGEXP.exec(res.data)[0])
+    .then(load_openapi_url)
+  ))
   .then(extract_paths)
   //.then((v) => (console.log(v), v))
   .then(generate)
   .then(write_files);
 
-function extract_paths(schemas){
+function extract_paths(schemas) {
   return schemas.reduce((m, schema) => ({...m, ...schema.paths}), {});
 }
 
@@ -99,7 +122,7 @@ ${
 
 [lib.js](./lib.js) is fully generated from Scaleway OpenAPI definition files:
 
-${openapi_urls.map(openapi_url => `- [${path.basename(openapi_url)}](${openapi_url})`).join('\n')}
+${fs.readdirSync(openapi_files_dir).map(openapi_file => `- [${openapi_file}](./${openapi_files_dir}/${openapi_file})`).join('\n')}
 
 ## 😉 Previous work
 

@@ -823,7 +823,6 @@ Client.prototype.ListServers = function ListServers(zone, options){
  * @param {array} body.tags - The server tags
  * @param {string} body.security_group - The security group ID
  * @param {string} body.placement_group - Placement group ID if server must be part of a placement group
- * @param {array} body.private_network - Private Network IDs if the server need to be part of one or more Private Networks
  * @param {object?} options axios http request options
  */
 Client.prototype.CreateServer = function CreateServer(zone, body, options){
@@ -2567,17 +2566,15 @@ Client.prototype.CreateBackend = function CreateBackend(region, lb_id, body, opt
  * @description undefined
  * @param {string} region - The region you want to target
  * @param {string} lb_id - Load balancer ID
- * @param {number} page - Page number
- * @param {string} name - Use this to search by name
  * @param {object?} options axios http request options
  */
-Client.prototype.ListCertificates = function ListCertificates(region, lb_id, page, name, options){
+Client.prototype.ListCertificates = function ListCertificates(region, lb_id, options){
   return axios({
     method: "get",
     url: "/lb/v1/regions/{region}/lbs/{lb_id}/certificates".replace('{region}', region).replace('{lb_id}', lb_id),
     baseURL: this.base_url,
     headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: "name",
+    params: {},
     data: {},
     responseType: 'json',
     ...options
@@ -3098,810 +3095,6 @@ Client.prototype.DeleteTag = function DeleteTag(region, tag_id, options){
 }
 
 /**
- * undefined
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {object?} options axios http request options
- */
-Client.prototype.GetServiceInfo = function GetServiceInfo(region, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}".replace('{region}', region),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * List database backups
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {object?} options axios http request options
- */
-Client.prototype.ListDatabaseBackups = function ListDatabaseBackups(region, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/backups".replace('{region}', region),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Create a database backup
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {object} body - Request content
- * @param {string} body.instance_id - UUID of the instance
- * @param {string} body.database_name - Name of the database you want to make a backup of
- * @param {string} body.name - Name of the backup
- * @param {string} body.expires_at - Expiration date (Format ISO 8601)
- * @param {object?} options axios http request options
- */
-Client.prototype.CreateDatabaseBackup = function CreateDatabaseBackup(region, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/backups".replace('{region}', region),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Get a database backup
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} database_backup_id - UUID of the database backup
- * @param {object?} options axios http request options
- */
-Client.prototype.GetDatabaseBackup = function GetDatabaseBackup(region, database_backup_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/backups/{database_backup_id}".replace('{region}', region).replace('{database_backup_id}', database_backup_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Update a database backup
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} database_backup_id - UUID of the database backup to update
- * @param {object?} options axios http request options
- */
-Client.prototype.UpdateDatabaseBackup = function UpdateDatabaseBackup(region, database_backup_id, options){
-  return axios({
-    method: "patch",
-    url: "/rdb/v1/regions/{region}/backups/{database_backup_id}".replace('{region}', region).replace('{database_backup_id}', database_backup_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Delete a database backup
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} database_backup_id - UUID of the database backup to delete
- * @param {object?} options axios http request options
- */
-Client.prototype.DeleteDatabaseBackup = function DeleteDatabaseBackup(region, database_backup_id, options){
-  return axios({
-    method: "delete",
-    url: "/rdb/v1/regions/{region}/backups/{database_backup_id}".replace('{region}', region).replace('{database_backup_id}', database_backup_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Export a database backup
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} database_backup_id - UUID of the database backup you want to export
- * @param {object} body - Request content
-
- * @param {object?} options axios http request options
- */
-Client.prototype.ExportDatabaseBackup = function ExportDatabaseBackup(region, database_backup_id, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/backups/{database_backup_id}/export".replace('{region}', region).replace('{database_backup_id}', database_backup_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Restore a database backup
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} database_backup_id - Backup of a logical database
- * @param {object} body - Request content
- * @param {string} body.database_name - Defines the destination database in order to restore into a specified database, the default destination is set to the origin database of the backup
- * @param {string} body.instance_id - Defines the rdb instance where the backup has to be restored
- * @param {object?} options axios http request options
- */
-Client.prototype.RestoreDatabaseBackup = function RestoreDatabaseBackup(region, database_backup_id, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/backups/{database_backup_id}/restore".replace('{region}', region).replace('{database_backup_id}', database_backup_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * List available database engines
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {object?} options axios http request options
- */
-Client.prototype.ListDatabaseEngines = function ListDatabaseEngines(region, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/database-engines".replace('{region}', region),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * List instances
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {object?} options axios http request options
- */
-Client.prototype.ListInstances = function ListInstances(region, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/instances".replace('{region}', region),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Create an instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {object} body - Request content
- * @param {string} body.organization_id - The organization ID on which to create the instance
- * @param {string} body.name - Name of the instance
- * @param {string} body.engine - Database engine of the database (PostgreSQL, MySQL, ...)
- * @param {string} body.user_name - Name of the user created when the instance is created
- * @param {string} body.password - Password of the user
- * @param {string} body.node_type - Type of node to use for the instance
- * @param {boolean} body.is_ha_cluster - Whether or not High-Availability is enabled
- * @param {boolean} body.disable_backup - Whether or not backups are disabled
- * @param {array} body.tags - Tags to apply to the instance
- * @param {array} body.init_settings - List of engine settings to be set at database initialisation
- * @param {object?} options axios http request options
- */
-Client.prototype.CreateInstance = function CreateInstance(region, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/instances".replace('{region}', region),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Get an instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.GetInstance = function GetInstance(region, instance_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Update an instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance to update
- * @param {object?} options axios http request options
- */
-Client.prototype.UpdateInstance = function UpdateInstance(region, instance_id, options){
-  return axios({
-    method: "patch",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Delete an instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance to delete
- * @param {object?} options axios http request options
- */
-Client.prototype.DeleteInstance = function DeleteInstance(region, instance_id, options){
-  return axios({
-    method: "delete",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * List ACL rules of a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.ListInstanceACLRules = function ListInstanceACLRules(region, instance_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/acls".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Add an ACL instance to a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance you want to add acl rules to
- * @param {object} body - Request content
- * @param {array} body.rules - ACLs rules to add to the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.AddInstanceACLRules = function AddInstanceACLRules(region, instance_id, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/acls".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Set ACL rules for a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance where the ACL rules has to be set
- * @param {object} body - Request content
- * @param {array} body.rules - ACL rules to define for the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.SetInstanceACLRules = function SetInstanceACLRules(region, instance_id, body, options){
-  return axios({
-    method: "put",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/acls".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Delete ACL rules of a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance you want to delete an ACL rules from
- * @param {object?} options axios http request options
- */
-Client.prototype.DeleteInstanceACLRules = function DeleteInstanceACLRules(region, instance_id, options){
-  return axios({
-    method: "delete",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/acls".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Get the TLS certificate of an instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.GetInstanceCertificate = function GetInstanceCertificate(region, instance_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/certificate".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Clone an instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance you want to clone
- * @param {object} body - Request content
- * @param {string} body.name - Name of the clone instance
- * @param {string} body.node_type - Node type of the clone
- * @param {object?} options axios http request options
- */
-Client.prototype.CloneInstance = function CloneInstance(region, instance_id, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/clone".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * List all database in a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance to list database of
- * @param {object?} options axios http request options
- */
-Client.prototype.ListDatabases = function ListDatabases(region, instance_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/databases".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Create a database in a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance where to create the database
- * @param {object} body - Request content
- * @param {string} body.name - Name of the database
- * @param {object?} options axios http request options
- */
-Client.prototype.CreateDatabase = function CreateDatabase(region, instance_id, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/databases".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Delete a database in a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance where to delete the database
- * @param {string} name - Name of the database to delete
- * @param {object?} options axios http request options
- */
-Client.prototype.DeleteDatabase = function DeleteDatabase(region, instance_id, name, options){
-  return axios({
-    method: "delete",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/databases/{name}".replace('{region}', region).replace('{instance_id}', instance_id).replace('{name}', name),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * List available logs of a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance you want logs of
- * @param {object?} options axios http request options
- */
-Client.prototype.ListInstanceLogs = function ListInstanceLogs(region, instance_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/logs".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Get instance metrics
- * @description Get database instance metrics.
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.GetInstanceMetrics = function GetInstanceMetrics(region, instance_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/metrics".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Prepare logs of a given instance
- * @description Prepare your instance logs. Logs will be grouped on a minimum interval of a day.
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance you want logs of
- * @param {object} body - Request content
- * @param {string} body.start_date - Start datetime of your log. Format: `{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z`
- * @param {string} body.end_date - End datetime of your log. Format: `{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z`
- * @param {object?} options axios http request options
- */
-Client.prototype.PrepareInstanceLogs = function PrepareInstanceLogs(region, instance_id, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/prepare-logs".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * List privileges of a given user in a given database in a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.ListPrivileges = function ListPrivileges(region, instance_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/privileges".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Set privileges of a given user in a given database in a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance
- * @param {object} body - Request content
- * @param {string} body.database_name - Name of the database
- * @param {string} body.user_name - Name of the user
- * @param {string} body.permission - Permission to set (Read, Read/Write, All, Custom)
- * @param {object?} options axios http request options
- */
-Client.prototype.SetPrivilege = function SetPrivilege(region, instance_id, body, options){
-  return axios({
-    method: "put",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/privileges".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Add an instance setting
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance you want to add settings to
- * @param {object} body - Request content
- * @param {array} body.settings - Settings to add on the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.AddInstanceSettings = function AddInstanceSettings(region, instance_id, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/settings".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Set a given instance setting
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance where the settings has to be set
- * @param {object} body - Request content
- * @param {array} body.settings - Settings to define for the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.SetInstanceSettings = function SetInstanceSettings(region, instance_id, body, options){
-  return axios({
-    method: "put",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/settings".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Delete an instance setting
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance to delete settings from
- * @param {object?} options axios http request options
- */
-Client.prototype.DeleteInstanceSettings = function DeleteInstanceSettings(region, instance_id, options){
-  return axios({
-    method: "delete",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/settings".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Upgrade an instance to an higher instance type
- * @description Upgrade your current `node_type` or enable high availability on your standalone database instance.
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance you want to upgrade
- * @param {object} body - Request content
- * @param {string} body.node_type - Node type of the instance you want to upgrade to
- * @param {boolean} body.enable_ha - Set to true to enable high availability on your instance
- * @param {object?} options axios http request options
- */
-Client.prototype.UpgradeInstance = function UpgradeInstance(region, instance_id, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/upgrade".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * List users of a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance
- * @param {object?} options axios http request options
- */
-Client.prototype.ListUsers = function ListUsers(region, instance_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/users".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Create an user in a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance you want to create a user in
- * @param {object} body - Request content
- * @param {string} body.name - Name of the user you want to create
- * @param {string} body.password - Password of the user you want to create
- * @param {boolean} body.is_admin - Whether the user you want to create will have administrative privileges
- * @param {object?} options axios http request options
- */
-Client.prototype.CreateUser = function CreateUser(region, instance_id, body, options){
-  return axios({
-    method: "post",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/users".replace('{region}', region).replace('{instance_id}', instance_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: body,
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Update an user in a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance the user belongs to
- * @param {string} name - Name of the database user
- * @param {object?} options axios http request options
- */
-Client.prototype.UpdateUser = function UpdateUser(region, instance_id, name, options){
-  return axios({
-    method: "patch",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/users/{name}".replace('{region}', region).replace('{instance_id}', instance_id).replace('{name}', name),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Delete an user in a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_id - UUID of the instance to delete a user from
- * @param {string} name - Name of the user
- * @param {object?} options axios http request options
- */
-Client.prototype.DeleteUser = function DeleteUser(region, instance_id, name, options){
-  return axios({
-    method: "delete",
-    url: "/rdb/v1/regions/{region}/instances/{instance_id}/users/{name}".replace('{region}', region).replace('{instance_id}', instance_id).replace('{name}', name),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * Get specific logs of a given instance
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {string} instance_log_id - UUID of the instance_log you want
- * @param {object?} options axios http request options
- */
-Client.prototype.GetInstanceLog = function GetInstanceLog(region, instance_log_id, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/logs/{instance_log_id}".replace('{region}', region).replace('{instance_log_id}', instance_log_id),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
- * List available node types
- * @description undefined
- * @param {string} region - The region you want to target
- * @param {object?} options axios http request options
- */
-Client.prototype.ListNodeTypes = function ListNodeTypes(region, options){
-  return axios({
-    method: "get",
-    url: "/rdb/v1/regions/{region}/node-types".replace('{region}', region),
-    baseURL: this.base_url,
-    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
-    params: {},
-    data: {},
-    responseType: 'json',
-    ...options
-  });      
-}
-
-/**
  * List all the clusters
  * @description This method allows to list all the existing Kubernetes clusters in an account.
  * @param {string} region - The region you want to target
@@ -3939,6 +3132,7 @@ Client.prototype.ListClusters = function ListClusters(region, options){
  * @param {object} body.auto_upgrade - This configuratiom enables to set a speicific 2-hour time window in which the cluster can be automatically updated to the latest patch version in the current minor one.
  * @param {array} body.feature_gates - List of feature gates to enable
  * @param {array} body.admission_plugins - List of admission plugins to enable
+ * @param {object} body.open_id_connect_config - This feature is in ALPHA state, it may be deleted or modified. This configuration enables to set the [OpenID Connect configuration](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens) of the Kubernetes API server.
  * @param {object?} options axios http request options
  */
 Client.prototype.CreateCluster = function CreateCluster(region, body, options){
@@ -4986,6 +4180,108 @@ Client.prototype.DeleteS3Route = function DeleteS3Route(region, route_id, option
   return axios({
     method: "delete",
     url: "/iot/v1beta1/regions/{region}/routes/s3/{route_id}".replace('{region}', region).replace('{route_id}', route_id),
+    baseURL: this.base_url,
+    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
+    params: {},
+    data: {},
+    responseType: 'json',
+    ...options
+  });      
+}
+
+/**
+ * List private networks
+ * @description undefined
+ * @param {string} zone - The zone you want to target
+ * @param {object?} options axios http request options
+ */
+Client.prototype.ListPrivateNetworks = function ListPrivateNetworks(zone, options){
+  return axios({
+    method: "get",
+    url: "/vpc/v1/zones/{zone}/private-networks".replace('{zone}', zone),
+    baseURL: this.base_url,
+    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
+    params: {},
+    data: {},
+    responseType: 'json',
+    ...options
+  });      
+}
+
+/**
+ * Create a private network
+ * @description undefined
+ * @param {string} zone - The zone you want to target
+ * @param {object} body - Request content
+ * @param {string} body.name - The name of the private network
+ * @param {string} body.project_id - The project ID of the private network
+ * @param {array} body.tags - The private networks tags
+ * @param {object?} options axios http request options
+ */
+Client.prototype.CreatePrivateNetwork = function CreatePrivateNetwork(zone, body, options){
+  return axios({
+    method: "post",
+    url: "/vpc/v1/zones/{zone}/private-networks".replace('{zone}', zone),
+    baseURL: this.base_url,
+    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
+    params: {},
+    data: body,
+    responseType: 'json',
+    ...options
+  });      
+}
+
+/**
+ * Get a private network
+ * @description undefined
+ * @param {string} zone - The zone you want to target
+ * @param {string} private_network_id - The private network id
+ * @param {object?} options axios http request options
+ */
+Client.prototype.GetPrivateNetwork = function GetPrivateNetwork(zone, private_network_id, options){
+  return axios({
+    method: "get",
+    url: "/vpc/v1/zones/{zone}/private-networks/{private_network_id}".replace('{zone}', zone).replace('{private_network_id}', private_network_id),
+    baseURL: this.base_url,
+    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
+    params: {},
+    data: {},
+    responseType: 'json',
+    ...options
+  });      
+}
+
+/**
+ * Update private network
+ * @description undefined
+ * @param {string} zone - The zone you want to target
+ * @param {string} private_network_id - The private network ID
+ * @param {object?} options axios http request options
+ */
+Client.prototype.UpdatePrivateNetwork = function UpdatePrivateNetwork(zone, private_network_id, options){
+  return axios({
+    method: "patch",
+    url: "/vpc/v1/zones/{zone}/private-networks/{private_network_id}".replace('{zone}', zone).replace('{private_network_id}', private_network_id),
+    baseURL: this.base_url,
+    headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
+    params: {},
+    data: {},
+    responseType: 'json',
+    ...options
+  });      
+}
+
+/**
+ * Delete a private network
+ * @description undefined
+ * @param {string} zone - The zone you want to target
+ * @param {string} private_network_id - The private network ID
+ * @param {object?} options axios http request options
+ */
+Client.prototype.DeletePrivateNetwork = function DeletePrivateNetwork(zone, private_network_id, options){
+  return axios({
+    method: "delete",
+    url: "/vpc/v1/zones/{zone}/private-networks/{private_network_id}".replace('{zone}', zone).replace('{private_network_id}', private_network_id),
     baseURL: this.base_url,
     headers: { 'User-Agent': 'node-scaleway-api-client/1.1.0', 'X-Auth-Token': this.auth_token },
     params: {},
