@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Home - scaleway-api-client - NodeJS API Client for Scaleway</title>
+    
+    <meta name="description" content="NodeJS API Client for Scaleway" />
+    
+        <meta name="keywords" content="scaleway, api, client, cloud" />
+        <meta name="keyword" content="scaleway, api, client, cloud" />
+    
+    
+    
+    <meta property="og:title" content="NodeJS API Client for Scaleway"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="scaleway-api-client"/>
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/FGRibreau/scaleway-api-client" target="_blank" class="menu-item" >Github</a></h2><h2><a href="https://twitter.com/FGRibreau" target="_blank" class="menu-item" >Dev by @FGRibreau</a></h2><h2><a href="https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg" target="_blank" class="menu-item" >Slack</a></h2><h2><a href="https://blocinbloc.com/" target="_blank" class="menu-item" >Sponsored by Bloc In Bloc</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a><ul class='methods'><li data-type='method'><a href="Client.html#AddBackendServers">AddBackendServers</a></li><li data-type='method'><a href="Client.html#AttachPrivateNetwork">AttachPrivateNetwork</a></li><li data-type='method'><a href="Client.html#CreateAcl">CreateAcl</a></li><li data-type='method'><a href="Client.html#CreateBackend">CreateBackend</a></li><li data-type='method'><a href="Client.html#CreateCertificate">CreateCertificate</a></li><li data-type='method'><a href="Client.html#CreateCluster">CreateCluster</a></li><li data-type='method'><a href="Client.html#CreateDatabaseRoute">CreateDatabaseRoute</a></li><li data-type='method'><a href="Client.html#CreateDevice">CreateDevice</a></li><li data-type='method'><a href="Client.html#CreateFrontend">CreateFrontend</a></li><li data-type='method'><a href="Client.html#CreateHub">CreateHub</a></li><li data-type='method'><a href="Client.html#CreateImage">CreateImage</a></li><li data-type='method'><a href="Client.html#CreateIp">CreateIp</a></li><li data-type='method'><a href="Client.html#CreateIp">CreateIp</a></li><li data-type='method'><a href="Client.html#CreateLb">CreateLb</a></li><li data-type='method'><a href="Client.html#CreateNamespace">CreateNamespace</a></li><li data-type='method'><a href="Client.html#CreateNetwork">CreateNetwork</a></li><li data-type='method'><a href="Client.html#CreatePlacementGroup">CreatePlacementGroup</a></li><li data-type='method'><a href="Client.html#CreatePool">CreatePool</a></li><li data-type='method'><a href="Client.html#CreatePrivateNetwork">CreatePrivateNetwork</a></li><li data-type='method'><a href="Client.html#CreatePrivateNIC">CreatePrivateNIC</a></li><li data-type='method'><a href="Client.html#CreateRestRoute">CreateRestRoute</a></li><li data-type='method'><a href="Client.html#CreateS3Route">CreateS3Route</a></li><li data-type='method'><a href="Client.html#CreateSecurityGroup">CreateSecurityGroup</a></li><li data-type='method'><a href="Client.html#CreateSecurityGroupRule">CreateSecurityGroupRule</a></li><li data-type='method'><a href="Client.html#CreateServer">CreateServer</a></li><li data-type='method'><a href="Client.html#CreateServer">CreateServer</a></li><li data-type='method'><a href="Client.html#CreateSnapshot">CreateSnapshot</a></li><li data-type='method'><a href="Client.html#CreateSubscriber">CreateSubscriber</a></li><li data-type='method'><a href="Client.html#CreateVolume">CreateVolume</a></li><li data-type='method'><a href="Client.html#DeleteAcl">DeleteAcl</a></li><li data-type='method'><a href="Client.html#DeleteBackend">DeleteBackend</a></li><li data-type='method'><a href="Client.html#DeleteCertificate">DeleteCertificate</a></li><li data-type='method'><a href="Client.html#DeleteCluster">DeleteCluster</a></li><li data-type='method'><a href="Client.html#DeleteDatabaseRoute">DeleteDatabaseRoute</a></li><li data-type='method'><a href="Client.html#DeleteDevice">DeleteDevice</a></li><li data-type='method'><a href="Client.html#DeleteFrontend">DeleteFrontend</a></li><li data-type='method'><a href="Client.html#DeleteHub">DeleteHub</a></li><li data-type='method'><a href="Client.html#DeleteImage">DeleteImage</a></li><li data-type='method'><a href="Client.html#DeleteImage">DeleteImage</a></li><li data-type='method'><a href="Client.html#DeleteIp">DeleteIp</a></li><li data-type='method'><a href="Client.html#DeleteLb">DeleteLb</a></li><li data-type='method'><a href="Client.html#DeleteNamespace">DeleteNamespace</a></li><li data-type='method'><a href="Client.html#DeleteNetwork">DeleteNetwork</a></li><li data-type='method'><a href="Client.html#DeletePlacementGroup">DeletePlacementGroup</a></li><li data-type='method'><a href="Client.html#DeletePool">DeletePool</a></li><li data-type='method'><a href="Client.html#DeletePrivateNetwork">DeletePrivateNetwork</a></li><li data-type='method'><a href="Client.html#DeletePrivateNIC">DeletePrivateNIC</a></li><li data-type='method'><a href="Client.html#DeleteRestRoute">DeleteRestRoute</a></li><li data-type='method'><a href="Client.html#DeleteS3Route">DeleteS3Route</a></li><li data-type='method'><a href="Client.html#DeleteSecurityGroup">DeleteSecurityGroup</a></li><li data-type='method'><a href="Client.html#DeleteSecurityGroupRule">DeleteSecurityGroupRule</a></li><li data-type='method'><a href="Client.html#DeleteServer">DeleteServer</a></li><li data-type='method'><a href="Client.html#DeleteServer">DeleteServer</a></li><li data-type='method'><a href="Client.html#DeleteServerUserData">DeleteServerUserData</a></li><li data-type='method'><a href="Client.html#DeleteSnapshot">DeleteSnapshot</a></li><li data-type='method'><a href="Client.html#DeleteSubscriber">DeleteSubscriber</a></li><li data-type='method'><a href="Client.html#DeleteTag">DeleteTag</a></li><li data-type='method'><a href="Client.html#DeleteVolume">DeleteVolume</a></li><li data-type='method'><a href="Client.html#DetachPrivateNetwork">DetachPrivateNetwork</a></li><li data-type='method'><a href="Client.html#DisableDevice">DisableDevice</a></li><li data-type='method'><a href="Client.html#DisableHub">DisableHub</a></li><li data-type='method'><a href="Client.html#EnableDevice">EnableDevice</a></li><li data-type='method'><a href="Client.html#EnableHub">EnableHub</a></li><li data-type='method'><a href="Client.html#GetAcl">GetAcl</a></li><li data-type='method'><a href="Client.html#GetBackend">GetBackend</a></li><li data-type='method'><a href="Client.html#GetBMCAccess">GetBMCAccess</a></li><li data-type='method'><a href="Client.html#GetBootscript">GetBootscript</a></li><li data-type='method'><a href="Client.html#GetCertificate">GetCertificate</a></li><li data-type='method'><a href="Client.html#GetCluster">GetCluster</a></li><li data-type='method'><a href="Client.html#GetClusterKubeConfig">GetClusterKubeConfig</a></li><li data-type='method'><a href="Client.html#GetDashboard">GetDashboard</a></li><li data-type='method'><a href="Client.html#GetDatabaseRoute">GetDatabaseRoute</a></li><li data-type='method'><a href="Client.html#GetDevice">GetDevice</a></li><li data-type='method'><a href="Client.html#GetDeviceMetrics">GetDeviceMetrics</a></li><li data-type='method'><a href="Client.html#GetFrontend">GetFrontend</a></li><li data-type='method'><a href="Client.html#GetHub">GetHub</a></li><li data-type='method'><a href="Client.html#GetHubMetrics">GetHubMetrics</a></li><li data-type='method'><a href="Client.html#GetImage">GetImage</a></li><li data-type='method'><a href="Client.html#GetImage">GetImage</a></li><li data-type='method'><a href="Client.html#GetIp">GetIp</a></li><li data-type='method'><a href="Client.html#GetIp">GetIp</a></li><li data-type='method'><a href="Client.html#GetLb">GetLb</a></li><li data-type='method'><a href="Client.html#GetLbStats">GetLbStats</a></li><li data-type='method'><a href="Client.html#GetNamespace">GetNamespace</a></li><li data-type='method'><a href="Client.html#GetNetwork">GetNetwork</a></li><li data-type='method'><a href="Client.html#GetNode">GetNode</a></li><li data-type='method'><a href="Client.html#GetOffer">GetOffer</a></li><li data-type='method'><a href="Client.html#GetOS">GetOS</a></li><li data-type='method'><a href="Client.html#GetPlacementGroup">GetPlacementGroup</a></li><li data-type='method'><a href="Client.html#GetPlacementGroupServers">GetPlacementGroupServers</a></li><li data-type='method'><a href="Client.html#GetPool">GetPool</a></li><li data-type='method'><a href="Client.html#GetPrivateNetwork">GetPrivateNetwork</a></li><li data-type='method'><a href="Client.html#GetPrivateNIC">GetPrivateNIC</a></li><li data-type='method'><a href="Client.html#GetRestRoute">GetRestRoute</a></li><li data-type='method'><a href="Client.html#GetS3Route">GetS3Route</a></li><li data-type='method'><a href="Client.html#GetSecurityGroup">GetSecurityGroup</a></li><li data-type='method'><a href="Client.html#GetSecurityGroupRule">GetSecurityGroupRule</a></li><li data-type='method'><a href="Client.html#GetServer">GetServer</a></li><li data-type='method'><a href="Client.html#GetServer">GetServer</a></li><li data-type='method'><a href="Client.html#GetServerMetrics">GetServerMetrics</a></li><li data-type='method'><a href="Client.html#GetServerTypesAvailability">GetServerTypesAvailability</a></li><li data-type='method'><a href="Client.html#GetServerUserData">GetServerUserData</a></li><li data-type='method'><a href="Client.html#GetSnapshot">GetSnapshot</a></li><li data-type='method'><a href="Client.html#GetSubscriber">GetSubscriber</a></li><li data-type='method'><a href="Client.html#GetTag">GetTag</a></li><li data-type='method'><a href="Client.html#GetVersion">GetVersion</a></li><li data-type='method'><a href="Client.html#GetVolume">GetVolume</a></li><li data-type='method'><a href="Client.html#InstallServer">InstallServer</a></li><li data-type='method'><a href="Client.html#ListAcls">ListAcls</a></li><li data-type='method'><a href="Client.html#ListBackends">ListBackends</a></li><li data-type='method'><a href="Client.html#ListBackendStats">ListBackendStats</a></li><li data-type='method'><a href="Client.html#ListBootscripts">ListBootscripts</a></li><li data-type='method'><a href="Client.html#ListCertificates">ListCertificates</a></li><li data-type='method'><a href="Client.html#ListClusterAvailableVersions">ListClusterAvailableVersions</a></li><li data-type='method'><a href="Client.html#ListClusters">ListClusters</a></li><li data-type='method'><a href="Client.html#ListDevices">ListDevices</a></li><li data-type='method'><a href="Client.html#ListFrontends">ListFrontends</a></li><li data-type='method'><a href="Client.html#ListHubs">ListHubs</a></li><li data-type='method'><a href="Client.html#ListImages">ListImages</a></li><li data-type='method'><a href="Client.html#ListImages">ListImages</a></li><li data-type='method'><a href="Client.html#ListIps">ListIps</a></li><li data-type='method'><a href="Client.html#ListIPs">ListIPs</a></li><li data-type='method'><a href="Client.html#ListLbPrivateNetworks">ListLbPrivateNetworks</a></li><li data-type='method'><a href="Client.html#ListLbs">ListLbs</a></li><li data-type='method'><a href="Client.html#ListLbTypes">ListLbTypes</a></li><li data-type='method'><a href="Client.html#ListNamespaces">ListNamespaces</a></li><li data-type='method'><a href="Client.html#ListNetworks">ListNetworks</a></li><li data-type='method'><a href="Client.html#ListNodes">ListNodes</a></li><li data-type='method'><a href="Client.html#ListOffers">ListOffers</a></li><li data-type='method'><a href="Client.html#ListOS">ListOS</a></li><li data-type='method'><a href="Client.html#ListPlacementGroups">ListPlacementGroups</a></li><li data-type='method'><a href="Client.html#ListPools">ListPools</a></li><li data-type='method'><a href="Client.html#ListPrivateNetworks">ListPrivateNetworks</a></li><li data-type='method'><a href="Client.html#ListPrivateNICs">ListPrivateNICs</a></li><li data-type='method'><a href="Client.html#ListRoutes">ListRoutes</a></li><li data-type='method'><a href="Client.html#ListSecurityGroupRules">ListSecurityGroupRules</a></li><li data-type='method'><a href="Client.html#ListSecurityGroups">ListSecurityGroups</a></li><li data-type='method'><a href="Client.html#ListServerActions">ListServerActions</a></li><li data-type='method'><a href="Client.html#ListServerEvents">ListServerEvents</a></li><li data-type='method'><a href="Client.html#ListServers">ListServers</a></li><li data-type='method'><a href="Client.html#ListServers">ListServers</a></li><li data-type='method'><a href="Client.html#ListServersTypes">ListServersTypes</a></li><li data-type='method'><a href="Client.html#ListServerUserData">ListServerUserData</a></li><li data-type='method'><a href="Client.html#ListSnapshots">ListSnapshots</a></li><li data-type='method'><a href="Client.html#ListSubscriber">ListSubscriber</a></li><li data-type='method'><a href="Client.html#ListTags">ListTags</a></li><li data-type='method'><a href="Client.html#ListVersions">ListVersions</a></li><li data-type='method'><a href="Client.html#ListVolumes">ListVolumes</a></li><li data-type='method'><a href="Client.html#ListVolumesTypes">ListVolumesTypes</a></li><li data-type='method'><a href="Client.html#MigrateLb">MigrateLb</a></li><li data-type='method'><a href="Client.html#RebootNode">RebootNode</a></li><li data-type='method'><a href="Client.html#RebootServer">RebootServer</a></li><li data-type='method'><a href="Client.html#ReleaseIp">ReleaseIp</a></li><li data-type='method'><a href="Client.html#RemoveBackendServers">RemoveBackendServers</a></li><li data-type='method'><a href="Client.html#ReplaceNode">ReplaceNode</a></li><li data-type='method'><a href="Client.html#ResetClusterAdminToken">ResetClusterAdminToken</a></li><li data-type='method'><a href="Client.html#ServerAction">ServerAction</a></li><li data-type='method'><a href="Client.html#SetBackendServers">SetBackendServers</a></li><li data-type='method'><a href="Client.html#SetImage">SetImage</a></li><li data-type='method'><a href="Client.html#SetPlacementGroup">SetPlacementGroup</a></li><li data-type='method'><a href="Client.html#SetPlacementGroupServers">SetPlacementGroupServers</a></li><li data-type='method'><a href="Client.html#SetSecurityGroup">SetSecurityGroup</a></li><li data-type='method'><a href="Client.html#SetSecurityGroupRule">SetSecurityGroupRule</a></li><li data-type='method'><a href="Client.html#SetServerUserData">SetServerUserData</a></li><li data-type='method'><a href="Client.html#SetSnapshot">SetSnapshot</a></li><li data-type='method'><a href="Client.html#SetVolume">SetVolume</a></li><li data-type='method'><a href="Client.html#StartBMCAccess">StartBMCAccess</a></li><li data-type='method'><a href="Client.html#StartServer">StartServer</a></li><li data-type='method'><a href="Client.html#StopBMCAccess">StopBMCAccess</a></li><li data-type='method'><a href="Client.html#StopServer">StopServer</a></li><li data-type='method'><a href="Client.html#SubscribeToLb">SubscribeToLb</a></li><li data-type='method'><a href="Client.html#UnsubscribeFromLb">UnsubscribeFromLb</a></li><li data-type='method'><a href="Client.html#UpdateAcl">UpdateAcl</a></li><li data-type='method'><a href="Client.html#UpdateBackend">UpdateBackend</a></li><li data-type='method'><a href="Client.html#UpdateCertificate">UpdateCertificate</a></li><li data-type='method'><a href="Client.html#UpdateCluster">UpdateCluster</a></li><li data-type='method'><a href="Client.html#UpdateDevice">UpdateDevice</a></li><li data-type='method'><a href="Client.html#UpdateFrontend">UpdateFrontend</a></li><li data-type='method'><a href="Client.html#UpdateHealthCheck">UpdateHealthCheck</a></li><li data-type='method'><a href="Client.html#UpdateHub">UpdateHub</a></li><li data-type='method'><a href="Client.html#UpdateImage">UpdateImage</a></li><li data-type='method'><a href="Client.html#UpdateIp">UpdateIp</a></li><li data-type='method'><a href="Client.html#UpdateIP">UpdateIP</a></li><li data-type='method'><a href="Client.html#UpdateIp">UpdateIp</a></li><li data-type='method'><a href="Client.html#UpdateLb">UpdateLb</a></li><li data-type='method'><a href="Client.html#UpdateNamespace">UpdateNamespace</a></li><li data-type='method'><a href="Client.html#UpdatePlacementGroup">UpdatePlacementGroup</a></li><li data-type='method'><a href="Client.html#UpdatePlacementGroupServers">UpdatePlacementGroupServers</a></li><li data-type='method'><a href="Client.html#UpdatePool">UpdatePool</a></li><li data-type='method'><a href="Client.html#UpdatePrivateNetwork">UpdatePrivateNetwork</a></li><li data-type='method'><a href="Client.html#UpdateServer">UpdateServer</a></li><li data-type='method'><a href="Client.html#UpdateServer">UpdateServer</a></li><li data-type='method'><a href="Client.html#UpdateSubscriber">UpdateSubscriber</a></li><li data-type='method'><a href="Client.html#UpdateVolume">UpdateVolume</a></li><li data-type='method'><a href="Client.html#UpgradeCluster">UpgradeCluster</a></li><li data-type='method'><a href="Client.html#UpgradePool">UpgradePool</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3>scaleway-api-client 2.0.0</h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme usertext">
+        <article><div align="center">
+  <br><p><strong>scaleway-api-client</strong> - NodeJS API Client for Scaleway</p>
+</div>
+<hr>
+<p><a href="https://david-dm.org/FGRibreau/scaleway-api-client"><img src="https://img.shields.io/david/FGRibreau/scaleway-api-client.svg" alt="Deps"></a> <a href="http://badge.fury.io/js/scaleway-api-client"><img src="https://img.shields.io/npm/v/scaleway-api-client.svg" alt="NPM version"></a> <a href="https://www.npmjs.com/package/scaleway-api-client"><img src="http://img.shields.io/npm/dm/scaleway-api-client.svg" alt="Downloads"></a></p>
+<p><a href="https://www.codementor.io/francois-guillaume-ribreau?utm_source=github&amp;utm_medium=button&amp;utm_term=francois-guillaume-ribreau&amp;utm_campaign=github"><img src="https://cdn.codementor.io/badges/get_help_github.svg" alt="Get help on Codementor"></a>  <a href="http://bit.ly/2c7uFJq"><img src="https://img.shields.io/badge/available%20for%20consulting%20advisory-yes-ff69b4.svg?" alt="available-for-advisory"></a> <img src="https://img.shields.io/badge/actively%20maintained-yes-ff69b4.svg" alt="extra"> <a href="https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg"><img src="https://img.shields.io/badge/Slack-Join%20our%20tech%20community-17202A?logo=slack" alt="Slack"></a></p>
+<h2>⚡️ Installation</h2>
+<p>Install with <a href="https://npmjs.org/package/scaleway-api-client">npm</a>.</p>
+<pre><code>npm install --save scaleway-api-client@2.0.0
+</code></pre>
+<h2>👾 Authentication</h2>
+<p>Create an API token on <a href="https://console.scaleway.com/account/organization/credentials">Scaleway admin console here</a>.</p>
+<pre class="prettyprint source"><code>const Client = require('scaleway-api-client');
+
+const api = new Client(&quot;YOUR_AUTH_TOKEN_HERE&quot;);
+</code></pre>
+<h2>📘 <a href="https://scaleway-api-client.netlify.app/2.0.0/">Documentation</a></h2>
+<ul>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#AddBackendServers">AddBackendServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#AttachPrivateNetwork">AttachPrivateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateAcl">CreateAcl</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateBackend">CreateBackend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateCertificate">CreateCertificate</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateCluster">CreateCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateDatabaseRoute">CreateDatabaseRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateDevice">CreateDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateFrontend">CreateFrontend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateHub">CreateHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateImage">CreateImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateIp">CreateIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateIp">CreateIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateLb">CreateLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateNamespace">CreateNamespace</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateNetwork">CreateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreatePlacementGroup">CreatePlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreatePool">CreatePool</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreatePrivateNIC">CreatePrivateNIC</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreatePrivateNetwork">CreatePrivateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateRestRoute">CreateRestRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateS3Route">CreateS3Route</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateSecurityGroupRule">CreateSecurityGroupRule</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateSecurityGroup">CreateSecurityGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateServer">CreateServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateServer">CreateServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateSnapshot">CreateSnapshot</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateSubscriber">CreateSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#CreateVolume">CreateVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteAcl">DeleteAcl</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteBackend">DeleteBackend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteCertificate">DeleteCertificate</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteCluster">DeleteCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteDatabaseRoute">DeleteDatabaseRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteDevice">DeleteDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteFrontend">DeleteFrontend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteHub">DeleteHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteImage">DeleteImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteImage">DeleteImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteIp">DeleteIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteLb">DeleteLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteNamespace">DeleteNamespace</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteNetwork">DeleteNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeletePlacementGroup">DeletePlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeletePool">DeletePool</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeletePrivateNIC">DeletePrivateNIC</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeletePrivateNetwork">DeletePrivateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteRestRoute">DeleteRestRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteS3Route">DeleteS3Route</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteSecurityGroupRule">DeleteSecurityGroupRule</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteSecurityGroup">DeleteSecurityGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteServerUserData">DeleteServerUserData</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteServer">DeleteServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteServer">DeleteServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteSnapshot">DeleteSnapshot</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteSubscriber">DeleteSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteTag">DeleteTag</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DeleteVolume">DeleteVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DetachPrivateNetwork">DetachPrivateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DisableDevice">DisableDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#DisableHub">DisableHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#EnableDevice">EnableDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#EnableHub">EnableHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetAcl">GetAcl</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetBMCAccess">GetBMCAccess</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetBackend">GetBackend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetBootscript">GetBootscript</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetCertificate">GetCertificate</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetClusterKubeConfig">GetClusterKubeConfig</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetCluster">GetCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetDashboard">GetDashboard</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetDatabaseRoute">GetDatabaseRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetDeviceMetrics">GetDeviceMetrics</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetDevice">GetDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetFrontend">GetFrontend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetHubMetrics">GetHubMetrics</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetHub">GetHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetImage">GetImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetImage">GetImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetIp">GetIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetIp">GetIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetLbStats">GetLbStats</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetLb">GetLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetNamespace">GetNamespace</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetNetwork">GetNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetNode">GetNode</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetOS">GetOS</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetOffer">GetOffer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetPlacementGroupServers">GetPlacementGroupServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetPlacementGroup">GetPlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetPool">GetPool</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetPrivateNIC">GetPrivateNIC</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetPrivateNetwork">GetPrivateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetRestRoute">GetRestRoute</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetS3Route">GetS3Route</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetSecurityGroupRule">GetSecurityGroupRule</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetSecurityGroup">GetSecurityGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetServerMetrics">GetServerMetrics</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetServerTypesAvailability">GetServerTypesAvailability</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetServerUserData">GetServerUserData</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetServer">GetServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetServer">GetServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetSnapshot">GetSnapshot</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetSubscriber">GetSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetTag">GetTag</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetVersion">GetVersion</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#GetVolume">GetVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#InstallServer">InstallServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListAcls">ListAcls</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListBackendStats">ListBackendStats</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListBackends">ListBackends</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListBootscripts">ListBootscripts</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListCertificates">ListCertificates</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListClusterAvailableVersions">ListClusterAvailableVersions</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListClusters">ListClusters</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListDevices">ListDevices</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListFrontends">ListFrontends</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListHubs">ListHubs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListIPs">ListIPs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListImages">ListImages</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListImages">ListImages</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListIps">ListIps</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListLbPrivateNetworks">ListLbPrivateNetworks</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListLbTypes">ListLbTypes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListLbs">ListLbs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListNamespaces">ListNamespaces</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListNetworks">ListNetworks</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListNodes">ListNodes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListOS">ListOS</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListOffers">ListOffers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListPlacementGroups">ListPlacementGroups</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListPools">ListPools</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListPrivateNICs">ListPrivateNICs</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListPrivateNetworks">ListPrivateNetworks</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListRoutes">ListRoutes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListSecurityGroupRules">ListSecurityGroupRules</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListSecurityGroups">ListSecurityGroups</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListServerActions">ListServerActions</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListServerEvents">ListServerEvents</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListServerUserData">ListServerUserData</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListServersTypes">ListServersTypes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListServers">ListServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListServers">ListServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListSnapshots">ListSnapshots</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListSubscriber">ListSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListTags">ListTags</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListVersions">ListVersions</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListVolumesTypes">ListVolumesTypes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ListVolumes">ListVolumes</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#MigrateLb">MigrateLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#RebootNode">RebootNode</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#RebootServer">RebootServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ReleaseIp">ReleaseIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#RemoveBackendServers">RemoveBackendServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ReplaceNode">ReplaceNode</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ResetClusterAdminToken">ResetClusterAdminToken</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#ServerAction">ServerAction</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SetBackendServers">SetBackendServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SetImage">SetImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SetPlacementGroupServers">SetPlacementGroupServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SetPlacementGroup">SetPlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SetSecurityGroupRule">SetSecurityGroupRule</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SetSecurityGroup">SetSecurityGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SetServerUserData">SetServerUserData</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SetSnapshot">SetSnapshot</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SetVolume">SetVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#StartBMCAccess">StartBMCAccess</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#StartServer">StartServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#StopBMCAccess">StopBMCAccess</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#StopServer">StopServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#SubscribeToLb">SubscribeToLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UnsubscribeFromLb">UnsubscribeFromLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateAcl">UpdateAcl</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateBackend">UpdateBackend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateCertificate">UpdateCertificate</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateCluster">UpdateCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateDevice">UpdateDevice</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateFrontend">UpdateFrontend</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateHealthCheck">UpdateHealthCheck</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateHub">UpdateHub</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateIP">UpdateIP</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateImage">UpdateImage</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateIp">UpdateIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateIp">UpdateIp</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateLb">UpdateLb</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateNamespace">UpdateNamespace</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdatePlacementGroupServers">UpdatePlacementGroupServers</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdatePlacementGroup">UpdatePlacementGroup</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdatePool">UpdatePool</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdatePrivateNetwork">UpdatePrivateNetwork</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateServer">UpdateServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateServer">UpdateServer</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateSubscriber">UpdateSubscriber</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpdateVolume">UpdateVolume</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpgradeCluster">UpgradeCluster</a></li>
+<li><a href="https://scaleway-api-client.netlify.app/2.0.0/Client.html#UpgradePool">UpgradePool</a></li>
+</ul>
+<h2>🚀 <a href="./examples">Examples</a></h2>
+<h2>😋 How it works</h2>
+<p><a href="./lib.js">lib.js</a> is fully generated from Scaleway OpenAPI definition files:</p>
+<ul>
+<li><a href=".//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.baremetal.v1.Api.yml">scaleway.baremetal.v1.Api.yml</a></li>
+<li><a href=".//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.instance.v1.Api.yml">scaleway.instance.v1.Api.yml</a></li>
+<li><a href=".//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.iot.v1beta1.Api.yml">scaleway.iot.v1beta1.Api.yml</a></li>
+<li><a href=".//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.k8s.v1.Api.yml">scaleway.k8s.v1.Api.yml</a></li>
+<li><a href=".//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.lb.v1.Api.yml">scaleway.lb.v1.Api.yml</a></li>
+<li><a href=".//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.registry.v1.Api.yml">scaleway.registry.v1.Api.yml</a></li>
+<li><a href=".//Users/fgribreau/www/labs/scaleway-api-client/openapi/scaleway.vpc.v1.Api.yml">scaleway.vpc.v1.Api.yml</a></li>
+</ul>
+<h2>😉 Previous work</h2>
+<ul>
+<li>https://github.com/moul/node-scaleway</li>
+<li>https://github.com/ignitial/scaleway-promised</li>
+</ul>
+<h2>🤩 You want to support my work?</h2>
+<p>I maintain this project in my free time, if it helped you, well, I would be grateful to buy a beer thanks to your <a href="https://paypal.me/fgribreau">paypal</a> or <a href="https://www.coinbase.com/fgribreau">Bitcoins</a>, donation!</p>
+<p><a href="http://fgribreau.com">Francois-Guillaume Ribreau</a> (npm@fgribreau.com)</p></article>
+    </section>
+
+
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Mon Nov 16 2020 23:32:39 GMT+0100 (Central European Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
